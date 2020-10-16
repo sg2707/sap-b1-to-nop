@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="SyncToNopCommerce.Views.SettingsV"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:prism="http://prismlibrary.com/"   
+             prism:ViewModelLocator.AutoWireViewModel="True">
+    <Grid>
+        
+        <DataGrid Name="dgRec" SelectionUnit="CellOrRowHeader" CanUserAddRows="False" CellEditEnding="dgUsers_CellEditEnding" ItemsSource="{Binding DBCompManagementResult}"
+                              AutoGeneratingColumn="dataGrid_AutoGeneratingColumn">
+           
+        </DataGrid>
+
+        <!--<StackPanel Grid.Row="1">
+            <StackPanel Orientation="Horizontal">
+                <Label Content="ID" Margin="3" Width="100"/>
+                <TextBox x:Name="IDTextBox" Width="100" Text="{Binding IDNo, Mode=TwoWay}" Margin="3"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Margin="3" Width="100" Content="File Source Path" />
+                <TextBox x:Name="sourcePathTextBox" Width="500" Text="{Binding SourcePath, Mode=TwoWay}" Margin="3"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="File Archive Path"  Margin="3" Width="100"/>
+                <TextBox x:Name="archivePathTextBox" Text="{Binding ArchivePath, Mode=TwoWay}" Margin="3" Width="500"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Width="100" Margin="3"/>
+                <Button x:Name="updateInfoButton" Content="Update" Command="{Binding SaveInfoCommand}" CommandParameter="AddInfo" Margin="3" Width="90"/>
+                <Label Content="{Binding Status}" Width="500"/>
+            </StackPanel>
+        </StackPanel>-->
+        <!--<Label Content="{Binding UpdateStatus}" FontSize="10" Grid.Row="2"/>-->
+
+
+    </Grid>
+</UserControl>

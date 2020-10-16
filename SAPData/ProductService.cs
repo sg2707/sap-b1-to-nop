@@ -1,0 +1,29 @@
+﻿using SAPData.Models;
+using SAPData.Services;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace SAPData
+{
+    public class ProductService :  IProductService
+    {
+        public ProductService()
+        {
+
+        }
+
+        public List<NOPCommerceProduct> getProductList()
+        {
+                DBContext dc = new DBContext();
+                dc.Database.Connection.Open();
+                var products = dc.Database.SqlQuery<NOPCommerceProduct>(
+                "exec SI_NopCommerceProduct").ToList();
+                return products;
+        }
+    }
+}

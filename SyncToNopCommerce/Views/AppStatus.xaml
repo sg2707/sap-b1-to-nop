@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="SAPConnector.Views.AppStatus"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:prism="http://prismlibrary.com/" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d" 
+             d:DesignHeight="40" d:DesignWidth="500"
+             prism:ViewModelLocator.AutoWireViewModel="True">
+    <Grid>        
+        <StackPanel  HorizontalAlignment="Right"  Orientation="Horizontal">
+            <Label Content="{Binding Status}"/>
+            <Label Content="?"  xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseDown" >
+                        <i:InvokeCommandAction Command="{Binding ShowInfo}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Label>
+        </StackPanel>
+    </Grid>
+</UserControl>
