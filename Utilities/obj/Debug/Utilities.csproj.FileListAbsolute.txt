@@ -22,4 +22,3 @@ C:\VS2019-PROJECTS\SyncToNopCommerce\Utilities\obj\Debug\Utilities.csproj.CoreCo
 C:\VS2019-PROJECTS\SyncToNopCommerce\Utilities\obj\Debug\Utilities.csproj.CopyComplete
 C:\VS2019-PROJECTS\SyncToNopCommerce\Utilities\obj\Debug\Utilities.dll
 C:\VS2019-PROJECTS\SyncToNopCommerce\Utilities\obj\Debug\Utilities.pdb
-C:\VS2019-PROJECTS\SyncToNopCommerce\Utilities\obj\Debug\Utilities.csprojAssemblyReference.cache

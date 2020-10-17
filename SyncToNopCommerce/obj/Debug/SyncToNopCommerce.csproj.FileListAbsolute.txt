@@ -150,3 +150,5 @@ C:\VS2019-PROJECTS\SyncToNopCommerce\SyncToNopCommerce\bin\Debug\ProductModule.p
 C:\VS2019-PROJECTS\SyncToNopCommerce\SyncToNopCommerce\bin\Debug\NopAPIConnect.pdb
 C:\VS2019-PROJECTS\SyncToNopCommerce\SyncToNopCommerce\bin\Debug\NopAPIConnect.dll.config
 C:\VS2019-PROJECTS\SyncToNopCommerce\SyncToNopCommerce\bin\Debug\AutoMapper.dll
+C:\VS2019-PROJECTS\SyncToNopCommerce\SyncToNopCommerce\bin\Debug\OrderModule.dll
+C:\VS2019-PROJECTS\SyncToNopCommerce\SyncToNopCommerce\bin\Debug\OrderModule.pdb

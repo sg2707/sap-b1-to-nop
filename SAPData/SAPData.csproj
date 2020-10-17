@@ -94,6 +94,8 @@
   <ItemGroup>
     <Compile Include="ConfigSettingsService.cs" />
     <Compile Include="Models\NOPCommerceProduct.cs" />
+    <Compile Include="OrderService.cs" />
+    <Compile Include="Services\IOrderService.cs" />
     <Compile Include="Services\IProductService.cs" />
     <Compile Include="Models\BindableCollection.cs" />
     <Compile Include="Models\CompanyInfos.cs" />
@@ -123,8 +125,9 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="SQLScripts\" />
+    <Content Include="SQLScripts\SI_NopCommerceProduct.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

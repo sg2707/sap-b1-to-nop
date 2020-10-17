@@ -169,6 +169,24 @@
           "bin/placeholder/NopAPIConnect.dll": {}
         }
       },
+      "OrderModule/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.6.1",
+        "dependencies": {
+          "NopAPIConnect": "1.0.0",
+          "Prism.Wpf": "7.2.0.1422",
+          "SAPData": "1.0.0",
+          "SyncBase": "1.0.0",
+          "Utilities": "1.0.0",
+          "log4net": "2.0.8"
+        },
+        "compile": {
+          "bin/placeholder/OrderModule.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/OrderModule.dll": {}
+        }
+      },
       "ProductModule/1.0.0": {
         "type": "project",
         "framework": ".NETFramework,Version=v4.6.1",
@@ -393,6 +411,24 @@
         },
         "runtime": {
           "bin/placeholder/NopAPIConnect.dll": {}
+        }
+      },
+      "OrderModule/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.6.1",
+        "dependencies": {
+          "NopAPIConnect": "1.0.0",
+          "Prism.Wpf": "7.2.0.1422",
+          "SAPData": "1.0.0",
+          "SyncBase": "1.0.0",
+          "Utilities": "1.0.0",
+          "log4net": "2.0.8"
+        },
+        "compile": {
+          "bin/placeholder/OrderModule.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/OrderModule.dll": {}
         }
       },
       "ProductModule/1.0.0": {
@@ -621,6 +657,24 @@
           "bin/placeholder/NopAPIConnect.dll": {}
         }
       },
+      "OrderModule/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.6.1",
+        "dependencies": {
+          "NopAPIConnect": "1.0.0",
+          "Prism.Wpf": "7.2.0.1422",
+          "SAPData": "1.0.0",
+          "SyncBase": "1.0.0",
+          "Utilities": "1.0.0",
+          "log4net": "2.0.8"
+        },
+        "compile": {
+          "bin/placeholder/OrderModule.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/OrderModule.dll": {}
+        }
+      },
       "ProductModule/1.0.0": {
         "type": "project",
         "framework": ".NETFramework,Version=v4.6.1",
@@ -845,6 +899,24 @@
         },
         "runtime": {
           "bin/placeholder/NopAPIConnect.dll": {}
+        }
+      },
+      "OrderModule/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.6.1",
+        "dependencies": {
+          "NopAPIConnect": "1.0.0",
+          "Prism.Wpf": "7.2.0.1422",
+          "SAPData": "1.0.0",
+          "SyncBase": "1.0.0",
+          "Utilities": "1.0.0",
+          "log4net": "2.0.8"
+        },
+        "compile": {
+          "bin/placeholder/OrderModule.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/OrderModule.dll": {}
         }
       },
       "ProductModule/1.0.0": {
@@ -1246,6 +1318,11 @@
       "path": "../NopAPIConnect/ClassLibrary1/NopAPIConnect.csproj",
       "msbuildProject": "../NopAPIConnect/ClassLibrary1/NopAPIConnect.csproj"
     },
+    "OrderModule/1.0.0": {
+      "type": "project",
+      "path": "../OrderModule/OrderModule.csproj",
+      "msbuildProject": "../OrderModule/OrderModule.csproj"
+    },
     "ProductModule/1.0.0": {
       "type": "project",
       "path": "../Module1/ProductModule.csproj",
@@ -1269,6 +1346,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETFramework,Version=v4.6.1": [
+      "OrderModule >= 1.0.0",
       "Prism.Unity >= 7.2.0.1422",
       "ProductModule >= 1.0.0",
       "SAPData >= 1.0.0",
@@ -1311,6 +1389,9 @@
           "projectReferences": {
             "C:\\VS2019-PROJECTS\\SyncToNopCommerce\\Module1\\ProductModule.csproj": {
               "projectPath": "C:\\VS2019-PROJECTS\\SyncToNopCommerce\\Module1\\ProductModule.csproj"
+            },
+            "C:\\VS2019-PROJECTS\\SyncToNopCommerce\\OrderModule\\OrderModule.csproj": {
+              "projectPath": "C:\\VS2019-PROJECTS\\SyncToNopCommerce\\OrderModule\\OrderModule.csproj"
             },
             "C:\\VS2019-PROJECTS\\SyncToNopCommerce\\SAPData\\SAPData.csproj": {
               "projectPath": "C:\\VS2019-PROJECTS\\SyncToNopCommerce\\SAPData\\SAPData.csproj"

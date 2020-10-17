@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Text;
 using Module1.ViewModels;
+using OrderModule.ViewModels;
 
 namespace SAPConnector
 {
@@ -58,7 +59,7 @@ namespace SAPConnector
 
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
         {
-            if (paramList?.Count == 0 || paramList.Contains(StartupParams.MODULE1))
+            if (paramList?.Count == 0 || paramList.Contains(StartupParams.ProductModule))
             {
                 var ExchRateModuleType = typeof(Module1.ProductModule);
                 moduleCatalog.AddModule(new ModuleInfo()
@@ -68,7 +69,16 @@ namespace SAPConnector
                     InitializationMode = InitializationMode.OnDemand
                 });
             }
-
+            if (paramList?.Count == 0 || paramList.Contains(StartupParams.OrderModule))
+            {
+                var OrderModuleType = typeof(OrderModule.OrderModule);
+                moduleCatalog.AddModule(new ModuleInfo()
+                {
+                    ModuleName = OrderModuleType.Name,
+                    ModuleType = OrderModuleType.AssemblyQualifiedName,
+                    InitializationMode = InitializationMode.OnDemand
+                });
+            }
         }
 
         protected async override void OnStartup(StartupEventArgs e)
@@ -102,8 +112,11 @@ namespace SAPConnector
                 {
                     switch (item)
                     {
-                        case StartupParams.MODULE1:
+                        case StartupParams.ProductModule:
                             SyncVM = Container.Resolve<ProductSyncViewModel>();
+                            break;
+                        case StartupParams.OrderModule:
+                            SyncVM = Container.Resolve<OrderSyncViewModel>();
                             break;
                     }
 
@@ -127,7 +140,8 @@ namespace SAPConnector
 
         enum StartupParams
         {
-            MODULE1
+            ProductModule,
+            OrderModule
         }
 
         protected override void InitializeModules()

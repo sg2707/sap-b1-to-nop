@@ -36,6 +36,7 @@ namespace Module1.ViewModels
         {
             _nopApiConnect = nopApiConnect;
             _productService = productService;
+            SyncText = "ProdSync";
             Sync = new DelegateCommand(async () => await Task.Run(() => ExecuteSync()));
         }
 

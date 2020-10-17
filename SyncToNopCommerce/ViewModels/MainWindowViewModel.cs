@@ -66,6 +66,7 @@ namespace SAPConnector.ViewModels
         private void LoadModules()
         {
             _moduleManager.LoadModule(typeof(Module1.ProductModule).Name);
+            _moduleManager.LoadModule(typeof(OrderModule.OrderModule).Name);
 
         }
 

@@ -59,6 +59,9 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -156,6 +159,10 @@
     <ProjectReference Include="..\Module1\ProductModule.csproj">
       <Project>{a1fa9fc2-ff66-43b2-8f2b-591a2ef8ea5a}</Project>
       <Name>ProductModule</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OrderModule\OrderModule.csproj">
+      <Project>{54d7ba96-42ab-4d73-a695-2784e6a86510}</Project>
+      <Name>OrderModule</Name>
     </ProjectReference>
     <ProjectReference Include="..\SAPData\SAPData.csproj">
       <Project>{d9f23c9c-fddd-4665-85ea-a948d84e9df6}</Project>
