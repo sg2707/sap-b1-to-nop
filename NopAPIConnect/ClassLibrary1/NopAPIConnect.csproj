@@ -104,6 +104,7 @@
     <Compile Include="APIConnect.cs" />
     <Compile Include="INopAPIConnect.cs" />
     <Compile Include="Models\DBContext.cs" />
+    <Compile Include="Models\NopCommerceApiOrder.cs" />
     <Compile Include="Models\NOPCommerceApiProduct.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

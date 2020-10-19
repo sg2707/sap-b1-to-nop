@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "xbhuEH9rVi0uc/fBFUxsl20wiwsQyEB1JZLjaHzg10D9/WPJej+aAd4xb+M/oCe+ETuaXuh0++d5Tfdf2Ii4Cg==",
+  "dgSpecHash": "Q9mYUaQeGk9g+CV+YbTZVt6djHoWWulRkvAh0yFVzaBfBbCMr0tl1ceLak9XYoWK2/9zTjaW2ybSI0YauOOR/Q==",
   "success": true,
   "projectFilePath": "C:\\VS2019-PROJECTS\\SyncToNopCommerce\\OrderModule\\OrderModule.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Saif\\.nuget\\packages\\automapper\\10.0.0\\automapper.10.0.0.nupkg.sha512",
     "C:\\Users\\Saif\\.nuget\\packages\\commonservicelocator\\2.0.4\\commonservicelocator.2.0.4.nupkg.sha512",
     "C:\\Users\\Saif\\.nuget\\packages\\log4net\\2.0.8\\log4net.2.0.8.nupkg.sha512",
     "C:\\Users\\Saif\\.nuget\\packages\\prism.core\\7.2.0.1422\\prism.core.7.2.0.1422.nupkg.sha512",

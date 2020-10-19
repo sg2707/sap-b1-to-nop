@@ -148,6 +148,10 @@
       "frameworks": {
         "net461": {
           "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[10.0.0, )"
+            },
             "Prism.Wpf": {
               "target": "Package",
               "version": "[7.2.0.1422, )"

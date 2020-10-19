@@ -173,6 +173,7 @@
         "type": "project",
         "framework": ".NETFramework,Version=v4.6.1",
         "dependencies": {
+          "AutoMapper": "10.0.0",
           "NopAPIConnect": "1.0.0",
           "Prism.Wpf": "7.2.0.1422",
           "SAPData": "1.0.0",
@@ -417,6 +418,7 @@
         "type": "project",
         "framework": ".NETFramework,Version=v4.6.1",
         "dependencies": {
+          "AutoMapper": "10.0.0",
           "NopAPIConnect": "1.0.0",
           "Prism.Wpf": "7.2.0.1422",
           "SAPData": "1.0.0",
@@ -661,6 +663,7 @@
         "type": "project",
         "framework": ".NETFramework,Version=v4.6.1",
         "dependencies": {
+          "AutoMapper": "10.0.0",
           "NopAPIConnect": "1.0.0",
           "Prism.Wpf": "7.2.0.1422",
           "SAPData": "1.0.0",
@@ -905,6 +908,7 @@
         "type": "project",
         "framework": ".NETFramework,Version=v4.6.1",
         "dependencies": {
+          "AutoMapper": "10.0.0",
           "NopAPIConnect": "1.0.0",
           "Prism.Wpf": "7.2.0.1422",
           "SAPData": "1.0.0",

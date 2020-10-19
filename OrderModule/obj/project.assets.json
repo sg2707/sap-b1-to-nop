@@ -2,6 +2,18 @@
   "version": 3,
   "targets": {
     ".NETFramework,Version=v4.6.1": {
+      "AutoMapper/10.0.0": {
+        "type": "package",
+        "frameworkAssemblies": [
+          "Microsoft.CSharp"
+        ],
+        "compile": {
+          "lib/net461/AutoMapper.dll": {}
+        },
+        "runtime": {
+          "lib/net461/AutoMapper.dll": {}
+        }
+      },
       "CommonServiceLocator/2.0.4": {
         "type": "package",
         "compile": {
@@ -173,6 +185,18 @@
       }
     },
     ".NETFramework,Version=v4.6.1/win": {
+      "AutoMapper/10.0.0": {
+        "type": "package",
+        "frameworkAssemblies": [
+          "Microsoft.CSharp"
+        ],
+        "compile": {
+          "lib/net461/AutoMapper.dll": {}
+        },
+        "runtime": {
+          "lib/net461/AutoMapper.dll": {}
+        }
+      },
       "CommonServiceLocator/2.0.4": {
         "type": "package",
         "compile": {
@@ -344,6 +368,18 @@
       }
     },
     ".NETFramework,Version=v4.6.1/win-x64": {
+      "AutoMapper/10.0.0": {
+        "type": "package",
+        "frameworkAssemblies": [
+          "Microsoft.CSharp"
+        ],
+        "compile": {
+          "lib/net461/AutoMapper.dll": {}
+        },
+        "runtime": {
+          "lib/net461/AutoMapper.dll": {}
+        }
+      },
       "CommonServiceLocator/2.0.4": {
         "type": "package",
         "compile": {
@@ -515,6 +551,18 @@
       }
     },
     ".NETFramework,Version=v4.6.1/win-x86": {
+      "AutoMapper/10.0.0": {
+        "type": "package",
+        "frameworkAssemblies": [
+          "Microsoft.CSharp"
+        ],
+        "compile": {
+          "lib/net461/AutoMapper.dll": {}
+        },
+        "runtime": {
+          "lib/net461/AutoMapper.dll": {}
+        }
+      },
       "CommonServiceLocator/2.0.4": {
         "type": "package",
         "compile": {
@@ -687,6 +735,22 @@
     }
   },
   "libraries": {
+    "AutoMapper/10.0.0": {
+      "sha512": "T09NoqMZBqw0/JEauXulxnmmerl0Zj03e0r6VCcJ0LURWBIaYxZPPoiDv8bHf5Y4x2xcXJp4JPXoCaeOMJfHEA==",
+      "type": "package",
+      "path": "automapper/10.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "automapper.10.0.0.nupkg.sha512",
+        "automapper.nuspec",
+        "icon.png",
+        "lib/net461/AutoMapper.dll",
+        "lib/net461/AutoMapper.xml",
+        "lib/netstandard2.0/AutoMapper.dll",
+        "lib/netstandard2.0/AutoMapper.xml"
+      ]
+    },
     "CommonServiceLocator/2.0.4": {
       "sha512": "YpXfV5l6kv1iQRDfhQnN4RxocbnNehU/rAAS62IlaQUTAKN3WoUbtx9MHwE98Pb09mBemSs4xhVqFhXq27rjxw==",
       "type": "package",
@@ -967,6 +1031,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETFramework,Version=v4.6.1": [
+      "AutoMapper >= 10.0.0",
       "NopAPIConnect >= 1.0.0",
       "Prism.Wpf >= 7.2.0.1422",
       "SAPData >= 1.0.0",
@@ -1026,6 +1091,10 @@
     "frameworks": {
       "net461": {
         "dependencies": {
+          "AutoMapper": {
+            "target": "Package",
+            "version": "[10.0.0, )"
+          },
           "Prism.Wpf": {
             "target": "Package",
             "version": "[7.2.0.1422, )"

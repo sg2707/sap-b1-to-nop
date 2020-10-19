@@ -94,6 +94,7 @@
   <ItemGroup>
     <Compile Include="ConfigSettingsService.cs" />
     <Compile Include="Models\NOPCommerceProduct.cs" />
+    <Compile Include="Models\NOPCommerceOrder.cs" />
     <Compile Include="OrderService.cs" />
     <Compile Include="Services\IOrderService.cs" />
     <Compile Include="Services\IProductService.cs" />

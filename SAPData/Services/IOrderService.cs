@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace SAPData.Services
 {
-    public class IOrderService
+    public interface IOrderService
     {
+        void SaveNewOrderToSAP();
     }
 }

@@ -22,7 +22,7 @@ namespace NopAPIConnect
             client = new HttpClient();
             response = new HttpResponseMessage();
             AccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOiIxNjAyNTg0NTc0IiwiZXhwIjoiMTkxNzk0NDU3NCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImFkbWluQHlvdXJTdG9yZS5jb20iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImM4YjdkMTg5LTBhN2QtNDcwOS04MTBhLWNiYTQyMmUyNzZiOCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJhZG1pbkB5b3VyU3RvcmUuY29tIn0.qvMFPvvf1Puvs79JloBfNtSXs7JUlZ8rHJoXxp0kUwo";
-            client.BaseAddress = new Uri("http://localhost:70/");
+            client.BaseAddress = new Uri("http://localhost:81/");
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", AccessToken);
@@ -57,5 +57,16 @@ namespace NopAPIConnect
             }
         }
 
+        public async Task<List<NopCommerceApiOrder>>GetOrdersAsync()
+        {
+            dynamic neworder = null;
+            response = await client.GetAsync("api/orders?payment_status=Paid&paid_at_min=2020-10-05T16:15:47-04:00");
+            if (response.IsSuccessStatusCode)
+            {
+                var prodresponse = response.Content.ReadAsStringAsync().Result;
+                neworder = JsonConvert.DeserializeObject(prodresponse);
+            }
+            return neworder;
+            }
     }
 }

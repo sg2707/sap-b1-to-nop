@@ -8,5 +8,6 @@ namespace NopAPIConnect
     {
         //void SaveProducts();
         Task SaveProductsAsync(List<NOPCommerceApiProduct> products);
+        Task<List<NopCommerceApiOrder>> GetOrdersAsync();
     }
 }

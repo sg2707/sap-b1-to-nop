@@ -1,9 +1,12 @@
-﻿using log4net;
+﻿using AutoMapper;
+using log4net;
 using NopAPIConnect;
+using NopAPIConnect.Models;
 using Prism.Commands;
 using Prism.Events;
 using Prism.Mvvm;
 using Prism.Regions;
+using SAPData;
 using SAPData.Services;
 using SyncBase.ViewModels;
 using System;
@@ -34,25 +37,26 @@ namespace OrderModule.ViewModels
         public override DelegateCommand Sync { get; set; }
         public override async Task ExecuteSync()
         {
-            //try
-            //{
-            //    var sapProducts = _productService.getProductList();
+            try
+            {
+               // var sapProducts = _productService.getProductList();
 
-            //    //Initialize the mapper
-            //    var config = new MapperConfiguration(cfg =>
-            //            cfg.CreateMap<NOPCommerceProduct, NOPCommerceApiProduct>()
-            //            .ForMember(dest => dest.manufacturer_ids,
-            //            opt => opt.MapFrom(src => new List<int>() { src.manufacturer_ids }))
-            //        );
-            //    //Using automapper
-            //    var mapper = new Mapper(config);
-            //    var apiProducts = mapper.Map<List<NOPCommerceApiProduct>>(sapProducts);
-            //    await _nopApiConnect.SaveProductsAsync(apiProducts);
-            //}
-            //catch (Exception ex)
-            //{
-            //    _logger.Error(ex);
-            //}
+                //Initialize the mapper
+                //var config = new MapperConfiguration(cfg =>
+                //        cfg.CreateMap<NOPCommerceOrder, NopCommerceApiOrder>()
+                //    //.ForMember(dest => dest.manufacturer_ids,
+                //    //opt => opt.MapFrom(src => new List<int>() { src.manufacturer_ids }))
+                //    ) ;
+                //Using automapper
+                //var mapper = new Mapper(config);
+                //var apiOrder = mapper.Map<List<NOPCommerceOrder>>(sapOrder);
+                //await _nopApiConnect.GetOrdersAsync(apiOrder);
+                await _nopApiConnect.GetOrdersAsync();
+            }
+            catch (Exception ex)
+            {
+                _logger.Error(ex);
+            }
         }
     }
 

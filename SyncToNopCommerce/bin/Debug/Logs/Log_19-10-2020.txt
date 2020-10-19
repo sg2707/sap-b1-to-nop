@@ -1,0 +1,9 @@
+2020-10-19 10:07:05,012 [ERROR] (20) Logger - Microsoft.CSharp.RuntimeBinder.RuntimeBinderException: Cannot implicitly convert type 'Newtonsoft.Json.Linq.JObject' to 'System.Collections.Generic.List<NopAPIConnect.Models.NopCommerceApiOrder>'
+   at CallSite.Target(Closure , CallSite , Object )
+   at System.Dynamic.UpdateDelegates.UpdateAndExecute1[T0,TRet](CallSite site, T0 arg0)
+   at NopAPIConnect.NopAPIConnect.<GetOrdersAsync>d__14.MoveNext() in C:\VS2019-PROJECTS\SyncToNopCommerce\NopAPIConnect\ClassLibrary1\APIConnect.cs:line 71
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at OrderModule.ViewModels.OrderSyncViewModel.<ExecuteSync>d__8.MoveNext() in C:\VS2019-PROJECTS\SyncToNopCommerce\OrderModule\ViewModels\OrderSyncViewModel.cs:line 54
