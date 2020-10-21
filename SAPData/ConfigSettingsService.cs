@@ -37,6 +37,10 @@ namespace SAPData
         public string Delimiter { get; set; }
 
         public string SlackWebHookURL { get; set; }
+
+        public string NOP_API_URL { get; set; }
+        public string NOPUserID { get; set; }
+        public string NOPPass { get; set; }
         public void ReloadSettings()
         {
             //try

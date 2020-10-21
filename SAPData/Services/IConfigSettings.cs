@@ -24,6 +24,10 @@ namespace SAPData.Services
 
         string SlackWebHookURL { get; set; }
 
+        string NOP_API_URL { get; set; }
+        string NOPUserID { get; set; }
+        string NOPPass { get; set; }
+
         void ReloadSettings();
     }
 }

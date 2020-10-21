@@ -1,4 +1,7 @@
-﻿using NopAPIConnect;
+﻿using log4net;
+using log4net.Core;
+using log4net.Repository.Hierarchy;
+using NopAPIConnect;
 using OrderModule.ViewModels;
 using Prism.Ioc;
 using Prism.Modularity;
@@ -12,6 +15,13 @@ namespace OrderModule
     public class OrderModule : IModule
     {
         private IContainerProvider _containerProvider;
+        private readonly ILog _logger;
+        private readonly IConfigSettings _configService;
+        public OrderModule(ILog logger, IConfigSettings configService)
+        {
+            _logger = logger;
+            _configService = configService;
+        }
         public void OnInitialized(IContainerProvider containerProvider)
         {
             _containerProvider = containerProvider;
@@ -30,7 +40,7 @@ namespace OrderModule
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
             OrderService _orderService = new OrderService();
-            NopAPIConnect.NopAPIConnect _nopApiConnect = new NopAPIConnect.NopAPIConnect();
+            NopAPIConnect.NopAPIConnect _nopApiConnect = new NopAPIConnect.NopAPIConnect(_configService, _logger);
             containerRegistry.RegisterInstance<IOrderService>(_orderService);
             containerRegistry.RegisterInstance<INopAPIConnect>(_nopApiConnect);
         }

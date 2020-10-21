@@ -180,6 +180,7 @@
   <ItemGroup>
     <Content Include="Scripts\AlterTableCompanyManagement.sql" />
     <Content Include="Scripts\SI_GetCompanyList.sql" />
+    <Content Include="Scripts\SI_NopCommerceProduct.sql" />
     <Content Include="Scripts\SI_VendorFolderPath.sql" />
   </ItemGroup>
   <ItemGroup>

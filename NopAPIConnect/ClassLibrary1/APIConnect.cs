@@ -8,26 +8,46 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-
+using log4net;
 
 namespace NopAPIConnect
 {
     public class NopAPIConnect : INopAPIConnect
     {
         public string AccessToken { get; set; }
+
+        private readonly ILog _logger;
+        private readonly IConfigSettings _configService;
+
         public static HttpClient client { get; set; }
         public HttpResponseMessage response { get; set; }
-        public NopAPIConnect()
+        public NopAPIConnect(IConfigSettings configservice, ILog logger)
         {
+            _logger = logger;
+            _configService = configservice;
             client = new HttpClient();
             response = new HttpResponseMessage();
-            AccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOiIxNjAyNTg0NTc0IiwiZXhwIjoiMTkxNzk0NDU3NCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6ImFkbWluQHlvdXJTdG9yZS5jb20iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImM4YjdkMTg5LTBhN2QtNDcwOS04MTBhLWNiYTQyMmUyNzZiOCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWUiOiJhZG1pbkB5b3VyU3RvcmUuY29tIn0.qvMFPvvf1Puvs79JloBfNtSXs7JUlZ8rHJoXxp0kUwo";
-            client.BaseAddress = new Uri("http://localhost:81/");
+            client.BaseAddress = new Uri(configservice.NOP_API_URL);
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", AccessToken);
-            //get values from config to initialize the client
+            getAccessToken(_configService.NOPUserID, _configService.NOPPass, _configService.NOP_API_URL);
+             //login
         }
+        private async Task  getAccessToken(string nOPUserID, string nOPPass,string noPBaseAdd)
+        {
+            response = await client.GetAsync("api/token?username="+ nOPUserID + "&password="+ nOPPass + "");
+            string accesstoken = null;
+            if (response.IsSuccessStatusCode)
+            {
+                var tokresponse = response.Content.ReadAsStringAsync().Result;
+                dynamic token = JsonConvert.DeserializeObject(tokresponse);
+                accesstoken = token.access_token;
+
+            }
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accesstoken);
+            //call and get accesstoken
+        }
+
         //here implement service
         public async Task SaveProductsAsync(List<NOPCommerceApiProduct> products)
         {
@@ -35,13 +55,20 @@ namespace NopAPIConnect
             int id = 0;
             foreach (var product in products)
             {
+                _logger.Info("Api started");
                 response = await client.GetAsync("api/products?sku=" + product.sku);
+                _logger.Info("Api retrieved rows by sku ");
                 if (response.IsSuccessStatusCode)
                 {
-                    var prodresponse = response.Content.ReadAsStringAsync().Result;
-                    dynamic newproducts = JsonConvert.DeserializeObject(prodresponse);
-                    sku = newproducts.products[0].sku;
-                    id = newproducts.products[0].id;
+                    _logger.Info("Api response success");
+                    try
+                    {
+                        var prodresponse = response.Content.ReadAsStringAsync().Result;
+                        dynamic newproducts = JsonConvert.DeserializeObject(prodresponse);
+                        sku = newproducts.products[0].sku;
+                        id = newproducts.products[0].id;
+                    }
+                    catch { }
                 }
                 var output = "{  \"product\": " + JsonConvert.SerializeObject(product) + "}";
                 var stringContent = new StringContent(output);
@@ -49,6 +76,7 @@ namespace NopAPIConnect
                 if (sku == null)
                 {
                     response = await client.PostAsync("api/products", stringContent);
+                    _logger.Info("Api posted product to Nop");
                 }
                 else
                 {

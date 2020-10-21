@@ -45,8 +45,9 @@ namespace Module1.ViewModels
         {
             try
             {
+                _logger.Info("Starting product sync");
                 var sapProducts = _productService.getProductList();
-
+                _logger.Info($"Read ({sapProducts?.Count()}) products from SAP");
                 //Initialize the mapper
                 var config = new MapperConfiguration(cfg =>
                         cfg.CreateMap<NOPCommerceProduct, NOPCommerceApiProduct>()
@@ -56,7 +57,12 @@ namespace Module1.ViewModels
                 //Using automapper
                 var mapper = new Mapper(config);
                 var apiProducts = mapper.Map<List<NOPCommerceApiProduct>>(sapProducts);
+
+                _logger.Info($"Posting ({sapProducts?.Count()}) products to NOP");
+
                 await _nopApiConnect.SaveProductsAsync(apiProducts);
+
+                _logger.Info($"Posting ({sapProducts?.Count()}) products sync completed");
             }
             catch (Exception ex)
             {
