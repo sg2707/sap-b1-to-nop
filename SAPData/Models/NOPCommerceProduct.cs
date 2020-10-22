@@ -247,7 +247,7 @@ namespace SAPData.Models
         //public int? vendor_id { get; set; }
 
         //public string se_name { get; set; }
-        public int? CategoryId { get; set; }
+        public int category_ids { get; set; }
     }
 }
 

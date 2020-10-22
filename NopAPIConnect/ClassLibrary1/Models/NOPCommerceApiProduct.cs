@@ -248,7 +248,7 @@ namespace NopAPIConnect.Models
 
         //public string se_name { get; set; }
 
-        public int? CategoryId { get; set; }
+        public List<int> category_ids { get; set; }
     }
 }
 

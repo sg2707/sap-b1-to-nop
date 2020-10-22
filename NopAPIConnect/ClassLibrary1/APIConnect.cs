@@ -81,6 +81,7 @@ namespace NopAPIConnect
                 else
                 {
                     response = await client.PutAsync("api/products/" + id, stringContent);
+                    _logger.Info("Api updated product to Nop");
                 }
             }
         }

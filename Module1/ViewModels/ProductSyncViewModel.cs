@@ -53,6 +53,8 @@ namespace Module1.ViewModels
                         cfg.CreateMap<NOPCommerceProduct, NOPCommerceApiProduct>()
                         .ForMember(dest => dest.manufacturer_ids,
                         opt => opt.MapFrom(src => new List<int>() { src.manufacturer_ids } ))
+                         .ForMember(dest => dest.category_ids,
+                        opt => opt.MapFrom(src => new List<int>() { src.category_ids }))
                     );
                 //Using automapper
                 var mapper = new Mapper(config);
