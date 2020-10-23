@@ -1,12 +1,14 @@
 # Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+This application is used to sync data between nop commerce and SAP Business one. Currently we have the following modules
+1.Product Sync module
+Products created and updated in SAP will be pushed to NOP Commerce.
 
 # Getting Started
 TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
 1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references
+2.	Software dependencies : NET framework version : 4.6.1, and Sql Server 2014 and Above
+3.	Latest releases : 1.0.0.0
+4.	API references : http://localhost:70/api
 
 # Build and Test
 TODO: Describe and show how to build your code and run the tests. 
