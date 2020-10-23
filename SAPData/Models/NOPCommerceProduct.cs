@@ -225,7 +225,7 @@ namespace SAPData.Models
         //public List<int> store_ids { get; set; }
 
 
-       public int manufacturer_ids { get; set; }
+       public string manufacturer { get; set; }
 
         // public List<ImageMapping> images { get; set; }
 
@@ -247,7 +247,7 @@ namespace SAPData.Models
         //public int? vendor_id { get; set; }
 
         //public string se_name { get; set; }
-        public int category_ids { get; set; }
+        public string category { get; set; }
     }
 }
 

@@ -28,6 +28,10 @@ namespace SAPData.Services
         string NOPUserID { get; set; }
         string NOPPass { get; set; }
 
+        DateTime LastProductSync { get; set; }
+
         void ReloadSettings();
+
+        void SaveLastProductSync(DateTime lastsynTime);
     }
 }

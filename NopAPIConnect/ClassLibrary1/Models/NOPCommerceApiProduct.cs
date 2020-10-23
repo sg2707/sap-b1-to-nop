@@ -223,7 +223,8 @@ namespace NopAPIConnect.Models
 
 
         //public List<int> store_ids { get; set; }
-
+        public string manufacturer { get; set; }
+        public string category { get; set; }
 
         public List<int> manufacturer_ids { get; set; }
 

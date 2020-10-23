@@ -8,7 +8,7 @@ namespace ProductModule
     {
         public MapperConfiguration()
         {
-            CreateMap<NOPCommerceProduct, NOPCommerceApiProduct>().ForMember(model => model.manufacturer_ids, opt => opt.MapFrom(src => src.manufacturer_ids));
+           // CreateMap<NOPCommerceProduct, NOPCommerceApiProduct>().ForMember(model => model.manufacturer_ids, opt => opt.MapFrom(src => src.manufacturer_ids));
             //CreateMap<NOPCommerceApiProduct, NOPCommerceProduct>();
         }
 

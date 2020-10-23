@@ -41,6 +41,8 @@ namespace SAPData
         public string NOP_API_URL { get; set; }
         public string NOPUserID { get; set; }
         public string NOPPass { get; set; }
+
+        public DateTime LastProductSync { get; set; }
         public void ReloadSettings()
         {
             //try
@@ -83,6 +85,21 @@ namespace SAPData
                 setValue = Convert.ChangeType(sourceValue, t);
             }
             return setValue;
+        }
+
+        public void SaveLastProductSync(DateTime value)
+        {
+            saveConfig(nameof(LastProductSync),value.ToString() );
+        }
+
+        public void saveConfig(string Key, String value)
+        {
+            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+
+            config.AppSettings.Settings[Key].Value = value;
+            config.Save(ConfigurationSaveMode.Modified);
+            ConfigurationManager.RefreshSection("appSettings");            
+            ReloadSettings();
         }
     }
 }
