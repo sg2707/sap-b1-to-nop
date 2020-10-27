@@ -15,6 +15,8 @@ using System.Threading.Tasks;
 using System.Text;
 using Module1.ViewModels;
 using OrderModule.ViewModels;
+using CategoryModule.ViewModels;
+using ManufacturerModule.ViewModels;
 
 namespace SAPConnector
 {
@@ -55,8 +57,6 @@ namespace SAPConnector
             containerRegistry.RegisterInstance<ISettingService>(_SettingsService);
 
         }
-
-
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
         {
             if (paramList?.Count == 0 || paramList.Contains(StartupParams.ProductModule))
@@ -76,6 +76,26 @@ namespace SAPConnector
                 {
                     ModuleName = OrderModuleType.Name,
                     ModuleType = OrderModuleType.AssemblyQualifiedName,
+                    InitializationMode = InitializationMode.OnDemand
+                });
+            }
+            if (paramList?.Count == 0 || paramList.Contains(StartupParams.CategoryModule))
+            {
+                var CategoryModuleType = typeof(CategoryModule.CategoryModule);
+                moduleCatalog.AddModule(new ModuleInfo()
+                {
+                    ModuleName = CategoryModuleType.Name,
+                    ModuleType = CategoryModuleType.AssemblyQualifiedName,
+                    InitializationMode = InitializationMode.OnDemand
+                });
+            }
+            if (paramList?.Count == 0 || paramList.Contains(StartupParams.ManufacturerModule))
+            {
+                var ManufacturerModuleType = typeof(ManufacturerModule.ManufacturerModule);
+                moduleCatalog.AddModule(new ModuleInfo()
+                {
+                    ModuleName = ManufacturerModuleType.Name,
+                    ModuleType = ManufacturerModuleType.AssemblyQualifiedName,
                     InitializationMode = InitializationMode.OnDemand
                 });
             }
@@ -118,6 +138,12 @@ namespace SAPConnector
                         case StartupParams.OrderModule:
                             SyncVM = Container.Resolve<OrderSyncViewModel>();
                             break;
+                        case StartupParams.CategoryModule:
+                            SyncVM = Container.Resolve<CategorySyncViewModel>();
+                            break;
+                        case StartupParams.ManufacturerModule:
+                            SyncVM = Container.Resolve<ManufacturerSyncViewModel>();
+                            break;
                     }
 
                     if (SyncVM.Enabled)
@@ -141,7 +167,9 @@ namespace SAPConnector
         enum StartupParams
         {
             ProductModule,
-            OrderModule
+            OrderModule,
+            CategoryModule,
+            ManufacturerModule
         }
 
         protected override void InitializeModules()

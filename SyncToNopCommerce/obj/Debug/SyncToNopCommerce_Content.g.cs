@@ -10,6 +10,7 @@
 
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("scripts/altertablecompanymanagement.sql")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("scripts/si_getcompanylist.sql")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("scripts/si_nopcommercecategory.sql")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("scripts/si_nopcommerceproduct.sql")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("scripts/si_vendorfolderpath.sql")]
 

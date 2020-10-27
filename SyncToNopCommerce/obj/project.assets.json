@@ -157,6 +157,43 @@
           "lib/net46/Unity.Container.dll": {}
         }
       },
+      "CategoryModule/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.6.1",
+        "dependencies": {
+          "AutoMapper": "10.0.0",
+          "NopAPIConnect": "1.0.0",
+          "Prism.Wpf": "7.2.0.1422",
+          "SAPData": "1.0.0",
+          "SyncBase": "1.0.0",
+          "Utilities": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/CategoryModule.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/CategoryModule.dll": {}
+        }
+      },
+      "ManufacturerModule/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.6.1",
+        "dependencies": {
+          "AutoMapper": "10.0.0",
+          "NopAPIConnect": "1.0.0",
+          "Prism.Wpf": "7.2.0.1422",
+          "SAPData": "1.0.0",
+          "SyncBase": "1.0.0",
+          "Utilities": "1.0.0",
+          "log4net": "2.0.8"
+        },
+        "compile": {
+          "bin/placeholder/ManufacturerModule.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ManufacturerModule.dll": {}
+        }
+      },
       "NopAPIConnect/1.0.0": {
         "type": "project",
         "dependencies": {
@@ -400,6 +437,43 @@
         },
         "runtime": {
           "lib/net46/Unity.Container.dll": {}
+        }
+      },
+      "CategoryModule/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.6.1",
+        "dependencies": {
+          "AutoMapper": "10.0.0",
+          "NopAPIConnect": "1.0.0",
+          "Prism.Wpf": "7.2.0.1422",
+          "SAPData": "1.0.0",
+          "SyncBase": "1.0.0",
+          "Utilities": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/CategoryModule.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/CategoryModule.dll": {}
+        }
+      },
+      "ManufacturerModule/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.6.1",
+        "dependencies": {
+          "AutoMapper": "10.0.0",
+          "NopAPIConnect": "1.0.0",
+          "Prism.Wpf": "7.2.0.1422",
+          "SAPData": "1.0.0",
+          "SyncBase": "1.0.0",
+          "Utilities": "1.0.0",
+          "log4net": "2.0.8"
+        },
+        "compile": {
+          "bin/placeholder/ManufacturerModule.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ManufacturerModule.dll": {}
         }
       },
       "NopAPIConnect/1.0.0": {
@@ -647,6 +721,43 @@
           "lib/net46/Unity.Container.dll": {}
         }
       },
+      "CategoryModule/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.6.1",
+        "dependencies": {
+          "AutoMapper": "10.0.0",
+          "NopAPIConnect": "1.0.0",
+          "Prism.Wpf": "7.2.0.1422",
+          "SAPData": "1.0.0",
+          "SyncBase": "1.0.0",
+          "Utilities": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/CategoryModule.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/CategoryModule.dll": {}
+        }
+      },
+      "ManufacturerModule/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.6.1",
+        "dependencies": {
+          "AutoMapper": "10.0.0",
+          "NopAPIConnect": "1.0.0",
+          "Prism.Wpf": "7.2.0.1422",
+          "SAPData": "1.0.0",
+          "SyncBase": "1.0.0",
+          "Utilities": "1.0.0",
+          "log4net": "2.0.8"
+        },
+        "compile": {
+          "bin/placeholder/ManufacturerModule.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ManufacturerModule.dll": {}
+        }
+      },
       "NopAPIConnect/1.0.0": {
         "type": "project",
         "dependencies": {
@@ -890,6 +1001,43 @@
         },
         "runtime": {
           "lib/net46/Unity.Container.dll": {}
+        }
+      },
+      "CategoryModule/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.6.1",
+        "dependencies": {
+          "AutoMapper": "10.0.0",
+          "NopAPIConnect": "1.0.0",
+          "Prism.Wpf": "7.2.0.1422",
+          "SAPData": "1.0.0",
+          "SyncBase": "1.0.0",
+          "Utilities": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/CategoryModule.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/CategoryModule.dll": {}
+        }
+      },
+      "ManufacturerModule/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.6.1",
+        "dependencies": {
+          "AutoMapper": "10.0.0",
+          "NopAPIConnect": "1.0.0",
+          "Prism.Wpf": "7.2.0.1422",
+          "SAPData": "1.0.0",
+          "SyncBase": "1.0.0",
+          "Utilities": "1.0.0",
+          "log4net": "2.0.8"
+        },
+        "compile": {
+          "bin/placeholder/ManufacturerModule.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ManufacturerModule.dll": {}
         }
       },
       "NopAPIConnect/1.0.0": {
@@ -1317,6 +1465,16 @@
         "unity.container.nuspec"
       ]
     },
+    "CategoryModule/1.0.0": {
+      "type": "project",
+      "path": "../CategoryModule/CategoryModule.csproj",
+      "msbuildProject": "../CategoryModule/CategoryModule.csproj"
+    },
+    "ManufacturerModule/1.0.0": {
+      "type": "project",
+      "path": "../ManufacturerModule/ManufacturerModule.csproj",
+      "msbuildProject": "../ManufacturerModule/ManufacturerModule.csproj"
+    },
     "NopAPIConnect/1.0.0": {
       "type": "project",
       "path": "../NopAPIConnect/ClassLibrary1/NopAPIConnect.csproj",
@@ -1350,6 +1508,8 @@
   },
   "projectFileDependencyGroups": {
     ".NETFramework,Version=v4.6.1": [
+      "CategoryModule >= 1.0.0",
+      "ManufacturerModule >= 1.0.0",
       "OrderModule >= 1.0.0",
       "Prism.Unity >= 7.2.0.1422",
       "ProductModule >= 1.0.0",
@@ -1391,6 +1551,12 @@
       "frameworks": {
         "net461": {
           "projectReferences": {
+            "C:\\VS2019-PROJECTS\\SyncToNopCommerce\\CategoryModule\\CategoryModule.csproj": {
+              "projectPath": "C:\\VS2019-PROJECTS\\SyncToNopCommerce\\CategoryModule\\CategoryModule.csproj"
+            },
+            "C:\\VS2019-PROJECTS\\SyncToNopCommerce\\ManufacturerModule\\ManufacturerModule.csproj": {
+              "projectPath": "C:\\VS2019-PROJECTS\\SyncToNopCommerce\\ManufacturerModule\\ManufacturerModule.csproj"
+            },
             "C:\\VS2019-PROJECTS\\SyncToNopCommerce\\Module1\\ProductModule.csproj": {
               "projectPath": "C:\\VS2019-PROJECTS\\SyncToNopCommerce\\Module1\\ProductModule.csproj"
             },

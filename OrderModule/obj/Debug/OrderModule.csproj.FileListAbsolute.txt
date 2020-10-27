@@ -1,9 +1,6 @@
-C:\VS2019-PROJECTS\SyncToNopCommerce\OrderModule\obj\Debug\OrderModule.csprojAssemblyReference.cache
-C:\VS2019-PROJECTS\SyncToNopCommerce\OrderModule\obj\Debug\OrderModule.Properties.Resources.resources
-C:\VS2019-PROJECTS\SyncToNopCommerce\OrderModule\obj\Debug\OrderModule.csproj.GenerateResource.cache
-C:\VS2019-PROJECTS\SyncToNopCommerce\OrderModule\obj\Debug\OrderModule.csproj.CoreCompileInputs.cache
 C:\VS2019-PROJECTS\SyncToNopCommerce\OrderModule\bin\Debug\OrderModule.dll
 C:\VS2019-PROJECTS\SyncToNopCommerce\OrderModule\bin\Debug\OrderModule.pdb
+C:\VS2019-PROJECTS\SyncToNopCommerce\OrderModule\bin\Debug\AutoMapper.dll
 C:\VS2019-PROJECTS\SyncToNopCommerce\OrderModule\bin\Debug\CommonServiceLocator.dll
 C:\VS2019-PROJECTS\SyncToNopCommerce\OrderModule\bin\Debug\log4net.dll
 C:\VS2019-PROJECTS\SyncToNopCommerce\OrderModule\bin\Debug\Prism.dll
@@ -134,7 +131,10 @@ C:\VS2019-PROJECTS\SyncToNopCommerce\OrderModule\bin\Debug\EntityFramework.xml
 C:\VS2019-PROJECTS\SyncToNopCommerce\OrderModule\bin\Debug\Newtonsoft.Json.xml
 C:\VS2019-PROJECTS\SyncToNopCommerce\OrderModule\bin\Debug\EntityFramework.SqlServer.xml
 C:\VS2019-PROJECTS\SyncToNopCommerce\OrderModule\bin\Debug\System.Net.Http.Formatting.xml
+C:\VS2019-PROJECTS\SyncToNopCommerce\OrderModule\obj\Debug\OrderModule.csprojAssemblyReference.cache
+C:\VS2019-PROJECTS\SyncToNopCommerce\OrderModule\obj\Debug\OrderModule.Properties.Resources.resources
+C:\VS2019-PROJECTS\SyncToNopCommerce\OrderModule\obj\Debug\OrderModule.csproj.GenerateResource.cache
+C:\VS2019-PROJECTS\SyncToNopCommerce\OrderModule\obj\Debug\OrderModule.csproj.CoreCompileInputs.cache
 C:\VS2019-PROJECTS\SyncToNopCommerce\OrderModule\obj\Debug\OrderModule.csproj.CopyComplete
 C:\VS2019-PROJECTS\SyncToNopCommerce\OrderModule\obj\Debug\OrderModule.dll
 C:\VS2019-PROJECTS\SyncToNopCommerce\OrderModule\obj\Debug\OrderModule.pdb
-C:\VS2019-PROJECTS\SyncToNopCommerce\OrderModule\bin\Debug\AutoMapper.dll

@@ -92,10 +92,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CategoryService.cs" />
     <Compile Include="ConfigSettingsService.cs" />
+    <Compile Include="ManufacturerService.cs" />
+    <Compile Include="Models\NopCommerceCategory.cs" />
+    <Compile Include="Models\NOPCommerceManufactures.cs" />
     <Compile Include="Models\NOPCommerceProduct.cs" />
     <Compile Include="Models\NOPCommerceOrder.cs" />
     <Compile Include="OrderService.cs" />
+    <Compile Include="Services\ICategoryService.cs" />
+    <Compile Include="Services\IManufacturerService.cs" />
     <Compile Include="Services\IOrderService.cs" />
     <Compile Include="Services\IProductService.cs" />
     <Compile Include="Models\BindableCollection.cs" />

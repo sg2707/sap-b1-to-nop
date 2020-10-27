@@ -16,7 +16,7 @@ namespace SAPData
         }
         public void SaveNewOrderToSAP()
         {
-            string s = "ghj";
+           
         }
     }
 }

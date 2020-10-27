@@ -32,6 +32,8 @@
                     <Label>SAP NOP Integration</Label>
                     <ContentControl prism:RegionManager.RegionName="{x:Static localUtil:RegionNames.ProductRegion }"  ></ContentControl>
                     <ContentControl prism:RegionManager.RegionName="{x:Static localUtil:RegionNames.OrderRegion }"  ></ContentControl>
+                    <ContentControl prism:RegionManager.RegionName="{x:Static localUtil:RegionNames.CategoryRegion }"  ></ContentControl>
+                    <ContentControl prism:RegionManager.RegionName="{x:Static localUtil:RegionNames.ManufacturerRegion }"  ></ContentControl>
                 </StackPanel>
 
             </StackPanel>

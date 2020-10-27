@@ -43,6 +43,9 @@ namespace SAPData
         public string NOPPass { get; set; }
 
         public DateTime LastProductSync { get; set; }
+        public DateTime LastCategorySync { get; set; }
+        public DateTime LastManufactureSync { get; set; }
+
         public void ReloadSettings()
         {
             //try
@@ -91,7 +94,14 @@ namespace SAPData
         {
             saveConfig(nameof(LastProductSync),value.ToString() );
         }
-
+        public void SaveLastCategorySync(DateTime value)
+        {
+            saveConfig(nameof(LastCategorySync), value.ToString());
+        }
+        public void SaveLastManufacturerSync(DateTime value)
+        {
+            saveConfig(nameof(LastManufactureSync), value.ToString());
+        }
         public void saveConfig(string Key, String value)
         {
             Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);

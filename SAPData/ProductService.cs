@@ -16,6 +16,7 @@ namespace SAPData
         public List<NOPCommerceProduct> GetProductList(DateTime LastProdSyncDate)
         {
                 DBContext dc = new DBContext();
+                if (!dc.Database.Exists())
                 dc.Database.Connection.Open();
                 var products = dc.Database.SqlQuery<NOPCommerceProduct>(
                 "exec SI_NopCommerceProduct @LastProdSyncDate",new SqlParameter("LastProdSyncDate", LastProdSyncDate)).ToList();
