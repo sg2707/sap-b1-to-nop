@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using log4net;
-
+using Newtonsoft.Json.Linq;
 
 namespace NopAPIConnect
 {
@@ -45,7 +45,7 @@ namespace NopAPIConnect
         /// <returns></returns>
         private async Task GetAccessToken(string nOPUserID, string nOPPass)
         {
-            response = await client.GetAsync("api/token?username="+ nOPUserID + "&password="+ nOPPass + "");
+            response = await client.GetAsync("api/token?username=" + nOPUserID + "&password=" + nOPPass + "");
             string accesstoken = null;
             if (response.IsSuccessStatusCode)
             {
@@ -87,7 +87,7 @@ namespace NopAPIConnect
                 CategoryIds = result.categories.ToList();
             }
         }
-  
+
         /// <summary>
         /// Save products to nopCommerce
         /// </summary>
@@ -119,7 +119,7 @@ namespace NopAPIConnect
                         id = newproducts.products[0].id;
 
                     }
-                    catch { }
+                    catch { sku = null; }
                 }
                 if (sku == null)
                 {
@@ -130,7 +130,7 @@ namespace NopAPIConnect
                 }
                 else
                 {
-                    product.manufacturer_ids =null;
+                    product.manufacturer_ids = null;
                     product.category_ids = null;
                     var output = "{  \"product\": " + JsonConvert.SerializeObject(product) + "}";
                     var stringContent = new StringContent(output);
@@ -152,20 +152,23 @@ namespace NopAPIConnect
             foreach (var category in categories)
             {
                 _logger.Info("Category Api started");
-                response = await client.GetAsync("api/categories?metakey=" + category.meta_keywords);
+                response = await client.GetAsync("api/categories?meta_keywords=" + category.meta_keywords);
                 _logger.Info("Category Api retrieved rows by meta keywords ");
                 if (response.IsSuccessStatusCode)
                 {
                     _logger.Info("Category Api response success");
-                    try
+                    var ctgresponse = response.Content.ReadAsStringAsync().Result;
+                    if ("{\"categories\":[]}" != JObject.Parse(ctgresponse).ToString(Newtonsoft.Json.Formatting.None).Trim())
                     {
-                        var ctgresponse = response.Content.ReadAsStringAsync().Result;
                         dynamic newctg = JsonConvert.DeserializeObject(ctgresponse);
                         metakey = newctg.categories[0].meta_keywords;
                         id = newctg.categories[0].id;
-
                     }
-                    catch { }
+                    else
+                    {
+                        metakey = null;
+                        id = 0;
+                    }
                 }
                 var output = "{  \"category\": " + JsonConvert.SerializeObject(category) + "}";
                 var stringContent = new StringContent(output);
@@ -176,7 +179,7 @@ namespace NopAPIConnect
                 }
                 else
                 {
-                    response = await client.PutAsync("api/categories/" + id, stringContent); 
+                    response = await client.PutAsync("api/categories/" + id, stringContent);
                     _logger.Info("Api updated category to Nop");
                 }
             }
@@ -194,20 +197,23 @@ namespace NopAPIConnect
             foreach (var manufacturer in manufacturers)
             {
                 _logger.Info("Manufacturer Api started");
-                response = await client.GetAsync("api/categories?name=" + manufacturer.name);
+                response = await client.GetAsync("api/manufacturers?name=" + manufacturer.name);
                 _logger.Info("Manufacturer Api retrieved rows by name ");
                 if (response.IsSuccessStatusCode)
                 {
                     _logger.Info("Manufacturer Api response success");
-                    try
+                    var mnfresponse = response.Content.ReadAsStringAsync().Result;
+                    if ("{\"manufacturers\":[]}" != JObject.Parse(mnfresponse).ToString(Newtonsoft.Json.Formatting.None).Trim())
                     {
-                        var mnfresponse = response.Content.ReadAsStringAsync().Result;
                         dynamic newmanuf = JsonConvert.DeserializeObject(mnfresponse);
                         name = newmanuf.manufacturers[0].name;
                         id = newmanuf.manufacturers[0].id;
-
                     }
-                    catch { }
+                    else
+                    {
+                        name = null;
+                        id = 0;
+                    }
                 }
                 var output = "{  \"manufacturer\": " + JsonConvert.SerializeObject(manufacturer) + "}";
                 var stringContent = new StringContent(output);
@@ -228,7 +234,7 @@ namespace NopAPIConnect
         /// Gets order status by payment status
         /// </summary>
         /// <returns>Order status</returns>
-        public async Task<List<NopCommerceApiOrder>>GetOrdersAsync()
+        public async Task<List<NopCommerceApiOrder>> GetOrdersAsync()
         {
             dynamic neworder = null;
             response = await client.GetAsync("api/orders?payment_status=Paid&paid_at_min=2020-10-05T16:15:47-04:00");
@@ -238,6 +244,6 @@ namespace NopAPIConnect
                 neworder = JsonConvert.DeserializeObject(prodresponse);
             }
             return neworder;
-            }
+        }
     }
 }
