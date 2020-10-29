@@ -29,9 +29,10 @@ namespace SAPData.Services
         string NOPPass { get; set; }
 
         DateTime LastProductSync { get; set; }
-
+        DateTime LastManufactureSync { get; set; }
         void ReloadSettings();
 
         void SaveLastProductSync(DateTime lastsynTime);
+        void SaveLastManufacturerSync(DateTime value);
     }
 }

@@ -156,6 +156,14 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CategoryModule\CategoryModule.csproj">
+      <Project>{7BD97767-2585-4CDD-8D1F-F5384FF49492}</Project>
+      <Name>CategoryModule</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ManufacturerModule\ManufacturerModule.csproj">
+      <Project>{6CB2939F-87C9-4415-8CA8-80F5C23B7F1E}</Project>
+      <Name>ManufacturerModule</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Module1\ProductModule.csproj">
       <Project>{a1fa9fc2-ff66-43b2-8f2b-591a2ef8ea5a}</Project>
       <Name>ProductModule</Name>
@@ -180,6 +188,7 @@
   <ItemGroup>
     <Content Include="Scripts\AlterTableCompanyManagement.sql" />
     <Content Include="Scripts\SI_GetCompanyList.sql" />
+    <Content Include="Scripts\SI_NopCommerceCategory.sql" />
     <Content Include="Scripts\SI_NopCommerceProduct.sql" />
     <Content Include="Scripts\SI_VendorFolderPath.sql" />
   </ItemGroup>

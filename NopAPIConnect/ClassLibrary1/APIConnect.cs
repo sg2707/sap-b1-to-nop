@@ -9,14 +9,12 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using log4net;
-
+using Newtonsoft.Json.Linq;
 
 namespace NopAPIConnect
 {
     public class NopAPIConnect : INopAPIConnect
     {
-        public string AccessToken { get; set; }
-
         private readonly ILog _logger;
 
         private readonly IConfigSettings _configService;
@@ -35,25 +33,33 @@ namespace NopAPIConnect
             client.BaseAddress = new Uri(configservice.NOP_API_URL);
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-             GetAccessToken(_configService.NOPUserID, _configService.NOPPass, _configService.NOP_API_URL);
-             //login
+            GetAccessToken(_configService.NOPUserID, _configService.NOPPass).ToString();
         }
-        private async Task  GetAccessToken(string nOPUserID, string nOPPass,string noPBaseAdd)
+
+        /// <summary>
+        /// Gets access token
+        /// </summary>
+        /// <param name="nOPUserID">username</param>
+        /// <param name="nOPPass">password</param>
+        /// <param name="noPBaseAdd">url</param>
+        /// <returns></returns>
+        private async Task GetAccessToken(string nOPUserID, string nOPPass)
         {
-            response = await client.GetAsync("api/token?username="+ nOPUserID + "&password="+ nOPPass + "");
+            response = await client.GetAsync("api/token?username=" + nOPUserID + "&password=" + nOPPass + "");
             string accesstoken = null;
             if (response.IsSuccessStatusCode)
             {
                 var tokresponse = response.Content.ReadAsStringAsync().Result;
                 dynamic token = JsonConvert.DeserializeObject(tokresponse);
                 accesstoken = token.access_token;
-
             }
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accesstoken);
-            //call and get accesstoken
         }
 
-
+        /// <summary>
+        /// Gets manufacturer list
+        /// </summary>
+        /// <returns></returns>
         private async Task GetManufacturerList()
         {
             _logger.Info("Manufacturers Api started");
@@ -65,6 +71,11 @@ namespace NopAPIConnect
                 ManufactureIds = result.manufacturers.ToList();
             }
         }
+
+        /// <summary>
+        /// Gets category list
+        /// </summary>
+        /// <returns></returns>
         private async Task GetCategoryList()
         {
             _logger.Info("Categories Api started");
@@ -76,7 +87,12 @@ namespace NopAPIConnect
                 CategoryIds = result.categories.ToList();
             }
         }
-        //here implement service
+
+        /// <summary>
+        /// Save products to nopCommerce
+        /// </summary>
+        /// <param name="products">Product list</param>
+        /// <returns></returns>
         public async Task SaveProductsAsync(List<NOPCommerceApiProduct> products)
         {
             string sku = null;
@@ -103,25 +119,122 @@ namespace NopAPIConnect
                         id = newproducts.products[0].id;
 
                     }
-                    catch { }
+                    catch { sku = null; }
                 }
-                var output = "{  \"product\": " + JsonConvert.SerializeObject(product) + "}";
-                var stringContent = new StringContent(output);
-
                 if (sku == null)
                 {
+                    var output = "{  \"product\": " + JsonConvert.SerializeObject(product) + "}";
+                    var stringContent = new StringContent(output);
                     response = await client.PostAsync("api/products", stringContent);
                     _logger.Info("Api posted product to Nop");
                 }
                 else
                 {
+                    product.manufacturer_ids = null;
+                    product.category_ids = null;
+                    var output = "{  \"product\": " + JsonConvert.SerializeObject(product) + "}";
+                    var stringContent = new StringContent(output);
                     response = await client.PutAsync("api/products/" + id, stringContent); //Mfg & catg
                     _logger.Info("Api updated product to Nop");
                 }
             }
         }
 
-        public async Task<List<NopCommerceApiOrder>>GetOrdersAsync()
+        /// <summary>
+        /// Save categories to nopComerce
+        /// </summary>
+        /// <param name="categories">Category list</param>
+        /// <returns></returns>
+        public async Task SaveCategoriesAsync(List<NopCommerceApiCategory> categories)
+        {
+            string metakey = null;
+            int id = 0;
+            foreach (var category in categories)
+            {
+                _logger.Info("Category Api started");
+                response = await client.GetAsync("api/categories?meta_keywords=" + category.meta_keywords);
+                _logger.Info("Category Api retrieved rows by meta keywords ");
+                if (response.IsSuccessStatusCode)
+                {
+                    _logger.Info("Category Api response success");
+                    var ctgresponse = response.Content.ReadAsStringAsync().Result;
+                    if ("{\"categories\":[]}" != JObject.Parse(ctgresponse).ToString(Newtonsoft.Json.Formatting.None).Trim())
+                    {
+                        dynamic newctg = JsonConvert.DeserializeObject(ctgresponse);
+                        metakey = newctg.categories[0].meta_keywords;
+                        id = newctg.categories[0].id;
+                    }
+                    else
+                    {
+                        metakey = null;
+                        id = 0;
+                    }
+                }
+                var output = "{  \"category\": " + JsonConvert.SerializeObject(category) + "}";
+                var stringContent = new StringContent(output);
+                if (metakey == null)
+                {
+                    response = await client.PostAsync("api/categories", stringContent);
+                    _logger.Info("Api posted category to Nop");
+                }
+                else
+                {
+                    response = await client.PutAsync("api/categories/" + id, stringContent);
+                    _logger.Info("Api updated category to Nop");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Save manufactures to nopComerce
+        /// </summary>
+        /// <param name="manufacturers">Manufacturer List</param>
+        /// <returns></returns>
+        public async Task SaveManufacturesAsync(List<NOPCommerceApiManufactures> manufacturers)
+        {
+            string name = null;
+            int id = 0;
+            foreach (var manufacturer in manufacturers)
+            {
+                _logger.Info("Manufacturer Api started");
+                response = await client.GetAsync("api/manufacturers?name=" + manufacturer.name);
+                _logger.Info("Manufacturer Api retrieved rows by name ");
+                if (response.IsSuccessStatusCode)
+                {
+                    _logger.Info("Manufacturer Api response success");
+                    var mnfresponse = response.Content.ReadAsStringAsync().Result;
+                    if ("{\"manufacturers\":[]}" != JObject.Parse(mnfresponse).ToString(Newtonsoft.Json.Formatting.None).Trim())
+                    {
+                        dynamic newmanuf = JsonConvert.DeserializeObject(mnfresponse);
+                        name = newmanuf.manufacturers[0].name;
+                        id = newmanuf.manufacturers[0].id;
+                    }
+                    else
+                    {
+                        name = null;
+                        id = 0;
+                    }
+                }
+                var output = "{  \"manufacturer\": " + JsonConvert.SerializeObject(manufacturer) + "}";
+                var stringContent = new StringContent(output);
+                if (name == null)
+                {
+                    response = await client.PostAsync("api/manufacturers", stringContent);
+                    _logger.Info("Api posted manufacturer to Nop");
+                }
+                else
+                {
+                    response = await client.PutAsync("api/manufacturers/" + id, stringContent);
+                    _logger.Info("Api updated product to Nop");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets order status by payment status
+        /// </summary>
+        /// <returns>Order status</returns>
+        public async Task<List<NopCommerceApiOrder>> GetOrdersAsync()
         {
             dynamic neworder = null;
             response = await client.GetAsync("api/orders?payment_status=Paid&paid_at_min=2020-10-05T16:15:47-04:00");
@@ -131,6 +244,6 @@ namespace NopAPIConnect
                 neworder = JsonConvert.DeserializeObject(prodresponse);
             }
             return neworder;
-            }
+        }
     }
 }

@@ -15,6 +15,7 @@ using Prism.Regions;
 using SAPConnector.Views;
 using Utilities;
 using Utilities.Events;
+using CategoryModule;
 
 namespace SAPConnector.ViewModels
 {
@@ -67,11 +68,12 @@ namespace SAPConnector.ViewModels
         {
             _moduleManager.LoadModule(typeof(Module1.ProductModule).Name);
             _moduleManager.LoadModule(typeof(OrderModule.OrderModule).Name);
-
+            _moduleManager.LoadModule(typeof(ManufacturerModule.ManufacturerModule).Name);
+            _moduleManager.LoadModule(typeof(CategoryModule.CategoryModule).Name); 
         }
 
         ///setting screen binding
-        ///
+       
         private string _text;
         public string Text
         {

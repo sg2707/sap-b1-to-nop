@@ -26,7 +26,6 @@ namespace SAPData
         public string SAPUserName { get; set; }
         public string SAPPassword { get; set; }
 
-
         public string EmailNotificationsTo { get; set; }
         public string EmailFrom { get; set; }
         public string EmailPass { get; set; }
@@ -43,6 +42,8 @@ namespace SAPData
         public string NOPPass { get; set; }
 
         public DateTime LastProductSync { get; set; }
+        public DateTime LastManufactureSync { get; set; }
+
         public void ReloadSettings()
         {
             //try
@@ -91,7 +92,10 @@ namespace SAPData
         {
             saveConfig(nameof(LastProductSync),value.ToString() );
         }
-
+        public void SaveLastManufacturerSync(DateTime value)
+        {
+            saveConfig(nameof(LastManufactureSync), value.ToString());
+        }
         public void saveConfig(string Key, String value)
         {
             Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
