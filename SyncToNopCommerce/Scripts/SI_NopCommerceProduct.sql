@@ -2,10 +2,10 @@
  create procedure SI_NopCommerceProduct @LastProductSync datetime
  as
  begin
- select Product.ItemCode [sku], ItemName [name]
+  select Product.ItemCode [sku], ItemName [name]
 , [U_SI_PartNumber] [short_description]
 , UserText [full_description] ,U_SI_Brand [manufacturer],
-Grp.U_SI_MainGroup  [category]
+cast(Grp.U_SI_MainGroup as nvarchar)  [category]
 , 10.00 [price], cast((Stock.OnHand - Stock.IsCommited)as int) as stock_quantity
 from OITM [Product]
 inner join [OITW] Stock on Product.ItemCode = Stock.ItemCode and Stock.WhsCode = '01'
