@@ -21,6 +21,8 @@ namespace NopAPIConnect
         public static HttpClient client { get; set; }
         public HttpResponseMessage response { get; set; }
         public HttpResponseMessage mfgresponse { get; set; }
+        public HttpResponseMessage mfgcountresponse { get; set; }
+       // public HttpResponseMessage ctgcountresponse { get; set; }
         public HttpResponseMessage catgresponse { get; set; }
         public List<NOPCommerceApiManufactures> ManufactureIds { get; set; }
         public List<NopCommerceApiCategory> CategoryIds { get; set; }
@@ -62,14 +64,32 @@ namespace NopAPIConnect
         /// <returns></returns>
         private async Task GetManufacturerList()
         {
-            _logger.Info("Manufacturers Api started");
-            mfgresponse = await client.GetAsync("api/manufacturers");
-            if (mfgresponse.IsSuccessStatusCode)
+            decimal totalrecords = 0;
+            decimal totalpages = 0;
+            List<NOPCommerceApiManufactures> results = new List<NOPCommerceApiManufactures>();
+            mfgcountresponse = await client.GetAsync("api/manufacturers/count");
+            if (mfgcountresponse.IsSuccessStatusCode)
             {
-                var mnfresponse = mfgresponse.Content.ReadAsStringAsync().Result;
-                var result = JsonConvert.DeserializeObject<RootObject>(mnfresponse);
-                ManufactureIds = result.manufacturers.ToList();
+                var count = mfgcountresponse.Content.ReadAsStringAsync().Result;
+                dynamic newcount = JsonConvert.DeserializeObject(count);
+                totalrecords = newcount.count;
             }
+            totalpages = totalrecords / 250;
+            totalpages = Math.Ceiling(totalpages);
+            _logger.Info("Manufacturers Api started");
+            for (int page = 1; page <= totalpages; page++)
+            {
+                mfgresponse = await client.GetAsync("api/manufacturers?page=" + page);
+                if (mfgresponse.IsSuccessStatusCode)
+                {
+
+                    var mnfresponse = mfgresponse.Content.ReadAsStringAsync().Result;
+                    var list = JsonConvert.DeserializeObject<RootObject>(mnfresponse);
+                    results.AddRange(list.manufacturers.ToList());
+                    
+                }
+            }
+            ManufactureIds = results;
         }
 
         /// <summary>
@@ -111,31 +131,36 @@ namespace NopAPIConnect
                 if (response.IsSuccessStatusCode)
                 {
                     _logger.Info("Product Api response success");
-                    try
+                    var prodresponse = response.Content.ReadAsStringAsync().Result;
+                    if ("{\"products\":[]}" != JObject.Parse(prodresponse).ToString(Newtonsoft.Json.Formatting.None).Trim())
                     {
-                        var prodresponse = response.Content.ReadAsStringAsync().Result;
+                        _logger.Info("Product record present next process update record to NOP");
                         dynamic newproducts = JsonConvert.DeserializeObject(prodresponse);
                         sku = newproducts.products[0].sku;
                         id = newproducts.products[0].id;
-
                     }
-                    catch { sku = null; }
+                    else
+                    {
+                        _logger.Info("Product record not present next process post record to NOP");
+                        sku = null;
+                        id = 0;
+                    }
                 }
                 if (sku == null)
                 {
                     var output = "{  \"product\": " + JsonConvert.SerializeObject(product) + "}";
                     var stringContent = new StringContent(output);
                     response = await client.PostAsync("api/products", stringContent);
-                    _logger.Info("Api posted product to Nop");
+                    _logger.Info("Api posted product record to Nop");
                 }
                 else
                 {
-                    product.manufacturer_ids = null;
-                    product.category_ids = null;
+                    //product.manufacturer_ids = null;
+                    //product.category_ids = null;
                     var output = "{  \"product\": " + JsonConvert.SerializeObject(product) + "}";
                     var stringContent = new StringContent(output);
                     response = await client.PutAsync("api/products/" + id, stringContent); //Mfg & catg
-                    _logger.Info("Api updated product to Nop");
+                    _logger.Info("Api updated product record to Nop");
                 }
             }
         }
@@ -160,12 +185,14 @@ namespace NopAPIConnect
                     var ctgresponse = response.Content.ReadAsStringAsync().Result;
                     if ("{\"categories\":[]}" != JObject.Parse(ctgresponse).ToString(Newtonsoft.Json.Formatting.None).Trim())
                     {
+                        _logger.Info("Category record present next process update record to NOP");
                         dynamic newctg = JsonConvert.DeserializeObject(ctgresponse);
                         metakey = newctg.categories[0].meta_keywords;
                         id = newctg.categories[0].id;
                     }
                     else
                     {
+                        _logger.Info("Category record not present next process post record to NOP");
                         metakey = null;
                         id = 0;
                     }
@@ -175,12 +202,12 @@ namespace NopAPIConnect
                 if (metakey == null)
                 {
                     response = await client.PostAsync("api/categories", stringContent);
-                    _logger.Info("Api posted category to Nop");
+                    _logger.Info("Api posted category record to Nop");
                 }
                 else
                 {
                     response = await client.PutAsync("api/categories/" + id, stringContent);
-                    _logger.Info("Api updated category to Nop");
+                    _logger.Info("Api updated category record to Nop");
                 }
             }
         }
@@ -205,12 +232,14 @@ namespace NopAPIConnect
                     var mnfresponse = response.Content.ReadAsStringAsync().Result;
                     if ("{\"manufacturers\":[]}" != JObject.Parse(mnfresponse).ToString(Newtonsoft.Json.Formatting.None).Trim())
                     {
+                        _logger.Info("Manufacturer record not present next process update record to NOP");
                         dynamic newmanuf = JsonConvert.DeserializeObject(mnfresponse);
                         name = newmanuf.manufacturers[0].name;
                         id = newmanuf.manufacturers[0].id;
                     }
                     else
                     {
+                        _logger.Info("Manufacturer record not present next process post record to NOP");
                         name = null;
                         id = 0;
                     }
@@ -220,12 +249,12 @@ namespace NopAPIConnect
                 if (name == null)
                 {
                     response = await client.PostAsync("api/manufacturers", stringContent);
-                    _logger.Info("Api posted manufacturer to Nop");
+                    _logger.Info("Api posted manufacturer record to Nop");
                 }
                 else
                 {
                     response = await client.PutAsync("api/manufacturers/" + id, stringContent);
-                    _logger.Info("Api updated product to Nop");
+                    _logger.Info("Api updated manufacturer record to Nop");
                 }
             }
         }
