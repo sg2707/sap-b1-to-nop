@@ -2,6 +2,12 @@
 This application is used to sync data between nop commerce and SAP Business one. Currently we have the following modules
 1.Product Sync module
 Products created and updated in SAP will be pushed to NOP Commerce.
+2.Category Sync module
+Category created and updated in SAP will be pushed to NOP Commerce.
+3.Manufacturer Sync module
+Manufacturers created and updated in SAP will be pushed to NOP Commerce.
+4.Product Specification attribute Sync module
+Product Specification attribute created and updated in SAP will be pushed to NOP Commerce.
 
 # Getting Started
 TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:

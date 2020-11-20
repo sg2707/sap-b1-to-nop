@@ -257,6 +257,26 @@
           "bin/placeholder/SAPData.dll": {}
         }
       },
+      "SpecificationAttributeModule/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.6.1",
+        "dependencies": {
+          "CategoryModule": "1.0.0",
+          "NopAPIConnect": "1.0.0",
+          "Prism.Core": "7.2.0.1422",
+          "Prism.Wpf": "7.2.0.1422",
+          "ProductModule": "1.0.0",
+          "SAPData": "1.0.0",
+          "SyncBase": "1.0.0",
+          "Utilities": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/SpecificationAttributeModule.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SpecificationAttributeModule.dll": {}
+        }
+      },
       "SyncBase/1.0.0": {
         "type": "project",
         "framework": ".NETFramework,Version=v4.6.1",
@@ -537,6 +557,26 @@
         },
         "runtime": {
           "bin/placeholder/SAPData.dll": {}
+        }
+      },
+      "SpecificationAttributeModule/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.6.1",
+        "dependencies": {
+          "CategoryModule": "1.0.0",
+          "NopAPIConnect": "1.0.0",
+          "Prism.Core": "7.2.0.1422",
+          "Prism.Wpf": "7.2.0.1422",
+          "ProductModule": "1.0.0",
+          "SAPData": "1.0.0",
+          "SyncBase": "1.0.0",
+          "Utilities": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/SpecificationAttributeModule.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SpecificationAttributeModule.dll": {}
         }
       },
       "SyncBase/1.0.0": {
@@ -821,6 +861,26 @@
           "bin/placeholder/SAPData.dll": {}
         }
       },
+      "SpecificationAttributeModule/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.6.1",
+        "dependencies": {
+          "CategoryModule": "1.0.0",
+          "NopAPIConnect": "1.0.0",
+          "Prism.Core": "7.2.0.1422",
+          "Prism.Wpf": "7.2.0.1422",
+          "ProductModule": "1.0.0",
+          "SAPData": "1.0.0",
+          "SyncBase": "1.0.0",
+          "Utilities": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/SpecificationAttributeModule.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SpecificationAttributeModule.dll": {}
+        }
+      },
       "SyncBase/1.0.0": {
         "type": "project",
         "framework": ".NETFramework,Version=v4.6.1",
@@ -1101,6 +1161,26 @@
         },
         "runtime": {
           "bin/placeholder/SAPData.dll": {}
+        }
+      },
+      "SpecificationAttributeModule/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.6.1",
+        "dependencies": {
+          "CategoryModule": "1.0.0",
+          "NopAPIConnect": "1.0.0",
+          "Prism.Core": "7.2.0.1422",
+          "Prism.Wpf": "7.2.0.1422",
+          "ProductModule": "1.0.0",
+          "SAPData": "1.0.0",
+          "SyncBase": "1.0.0",
+          "Utilities": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/SpecificationAttributeModule.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SpecificationAttributeModule.dll": {}
         }
       },
       "SyncBase/1.0.0": {
@@ -1495,6 +1575,11 @@
       "path": "../SAPData/SAPData.csproj",
       "msbuildProject": "../SAPData/SAPData.csproj"
     },
+    "SpecificationAttributeModule/1.0.0": {
+      "type": "project",
+      "path": "../SpecificationAttributeModule/SpecificationAttributeModule.csproj",
+      "msbuildProject": "../SpecificationAttributeModule/SpecificationAttributeModule.csproj"
+    },
     "SyncBase/1.0.0": {
       "type": "project",
       "path": "../SyncBase/SyncBase.csproj",
@@ -1514,6 +1599,7 @@
       "Prism.Unity >= 7.2.0.1422",
       "ProductModule >= 1.0.0",
       "SAPData >= 1.0.0",
+      "SpecificationAttributeModule >= 1.0.0",
       "SyncBase >= 1.0.0",
       "Utilities >= 1.0.0",
       "log4net >= 2.0.8"
@@ -1565,6 +1651,9 @@
             },
             "C:\\VS2019-PROJECTS\\SyncToNopCommerce\\SAPData\\SAPData.csproj": {
               "projectPath": "C:\\VS2019-PROJECTS\\SyncToNopCommerce\\SAPData\\SAPData.csproj"
+            },
+            "C:\\VS2019-PROJECTS\\SyncToNopCommerce\\SpecificationAttributeModule\\SpecificationAttributeModule.csproj": {
+              "projectPath": "C:\\VS2019-PROJECTS\\SyncToNopCommerce\\SpecificationAttributeModule\\SpecificationAttributeModule.csproj"
             },
             "C:\\VS2019-PROJECTS\\SyncToNopCommerce\\SyncBase\\SyncBase.csproj": {
               "projectPath": "C:\\VS2019-PROJECTS\\SyncToNopCommerce\\SyncBase\\SyncBase.csproj"

@@ -18,6 +18,7 @@ C:\VS2019-PROJECTS\SyncToNopCommerce\Utilities\bin\Debug\Prism.xml
 C:\VS2019-PROJECTS\SyncToNopCommerce\Utilities\bin\Debug\Prism.Wpf.pdb
 C:\VS2019-PROJECTS\SyncToNopCommerce\Utilities\bin\Debug\Prism.Wpf.xml
 C:\VS2019-PROJECTS\SyncToNopCommerce\Utilities\bin\Debug\System.ValueTuple.xml
+C:\VS2019-PROJECTS\SyncToNopCommerce\Utilities\obj\Debug\Utilities.csprojAssemblyReference.cache
 C:\VS2019-PROJECTS\SyncToNopCommerce\Utilities\obj\Debug\Utilities.csproj.CoreCompileInputs.cache
 C:\VS2019-PROJECTS\SyncToNopCommerce\Utilities\obj\Debug\Utilities.csproj.CopyComplete
 C:\VS2019-PROJECTS\SyncToNopCommerce\Utilities\obj\Debug\Utilities.dll

@@ -121,6 +121,7 @@ C:\VS2019-PROJECTS\SyncToNopCommerce\SyncToNopCommerce\bin\Debug\ManufacturerMod
 C:\VS2019-PROJECTS\SyncToNopCommerce\SyncToNopCommerce\bin\Debug\OrderModule.dll
 C:\VS2019-PROJECTS\SyncToNopCommerce\SyncToNopCommerce\bin\Debug\ProductModule.dll
 C:\VS2019-PROJECTS\SyncToNopCommerce\SyncToNopCommerce\bin\Debug\SAPData.dll
+C:\VS2019-PROJECTS\SyncToNopCommerce\SyncToNopCommerce\bin\Debug\SpecificationAttributeModule.dll
 C:\VS2019-PROJECTS\SyncToNopCommerce\SyncToNopCommerce\bin\Debug\SyncBase.dll
 C:\VS2019-PROJECTS\SyncToNopCommerce\SyncToNopCommerce\bin\Debug\Utilities.dll
 C:\VS2019-PROJECTS\SyncToNopCommerce\SyncToNopCommerce\bin\Debug\NopAPIConnect.dll
@@ -132,6 +133,7 @@ C:\VS2019-PROJECTS\SyncToNopCommerce\SyncToNopCommerce\bin\Debug\ProductModule.p
 C:\VS2019-PROJECTS\SyncToNopCommerce\SyncToNopCommerce\bin\Debug\OrderModule.pdb
 C:\VS2019-PROJECTS\SyncToNopCommerce\SyncToNopCommerce\bin\Debug\SAPData.pdb
 C:\VS2019-PROJECTS\SyncToNopCommerce\SyncToNopCommerce\bin\Debug\SAPData.dll.config
+C:\VS2019-PROJECTS\SyncToNopCommerce\SyncToNopCommerce\bin\Debug\SpecificationAttributeModule.pdb
 C:\VS2019-PROJECTS\SyncToNopCommerce\SyncToNopCommerce\bin\Debug\SyncBase.pdb
 C:\VS2019-PROJECTS\SyncToNopCommerce\SyncToNopCommerce\bin\Debug\Utilities.pdb
 C:\VS2019-PROJECTS\SyncToNopCommerce\SyncToNopCommerce\bin\Debug\NopAPIConnect.pdb

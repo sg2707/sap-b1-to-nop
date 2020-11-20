@@ -176,6 +176,10 @@
       <Project>{d9f23c9c-fddd-4665-85ea-a948d84e9df6}</Project>
       <Name>SAPData</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SpecificationAttributeModule\SpecificationAttributeModule.csproj">
+      <Project>{40f12735-b478-46b8-a6f8-2f5c6b26317e}</Project>
+      <Name>SpecificationAttributeModule</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SyncBase\SyncBase.csproj">
       <Project>{F3EB2FF1-A88F-4F63-8EC9-BAE6C8E00E33}</Project>
       <Name>SyncBase</Name>
@@ -190,6 +194,7 @@
     <Content Include="Scripts\SI_GetCompanyList.sql" />
     <Content Include="Scripts\SI_NopCommerceCategory.sql" />
     <Content Include="Scripts\SI_NopCommerceProduct.sql" />
+    <Content Include="Scripts\SI_NopCommerceProductSpecification.sql" />
     <Content Include="Scripts\SI_VendorFolderPath.sql" />
   </ItemGroup>
   <ItemGroup>

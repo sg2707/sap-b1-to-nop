@@ -16,7 +16,7 @@ namespace Utilities
         public static string OrderRegion = "OrderRegion";
         public static string CategoryRegion = "CategoryRegion";
         public static string ManufacturerRegion = "ManufacturerRegion";
-
+        public static string SpecificationAttributeRegion = "SpecificationAttributeRegion";
         public static string SettingsRegion = "SettingsRegion";
         #endregion Magento
 

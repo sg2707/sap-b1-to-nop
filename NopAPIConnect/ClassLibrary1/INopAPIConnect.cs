@@ -10,6 +10,7 @@ namespace NopAPIConnect
         Task SaveProductsAsync(List<NOPCommerceApiProduct> products);
         Task SaveCategoriesAsync(List<NopCommerceApiCategory> categories);
         Task SaveManufacturesAsync(List<NOPCommerceApiManufactures> manufacturers);
+        Task SaveSpecificationAttributeAsync(List<NOPCommerceApiSpecificationAttribute> Specattributes);
         Task<List<NopCommerceApiOrder>> GetOrdersAsync();
     }
 }

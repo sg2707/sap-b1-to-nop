@@ -17,6 +17,7 @@ using Module1.ViewModels;
 using OrderModule.ViewModels;
 using CategoryModule.ViewModels;
 using ManufacturerModule.ViewModels;
+using SpecificationAttributeModule.ViewModels;
 
 namespace SAPConnector
 {
@@ -99,6 +100,15 @@ namespace SAPConnector
                     InitializationMode = InitializationMode.OnDemand
                 });
             }
+            {
+                var SpecificationAttributeModuleType = typeof(SpecificationAttributeModule.SpecificationAttributeModule);
+                moduleCatalog.AddModule(new ModuleInfo()
+                {
+                    ModuleName = SpecificationAttributeModuleType.Name,
+                    ModuleType = SpecificationAttributeModuleType.AssemblyQualifiedName,
+                    InitializationMode = InitializationMode.OnDemand
+                });
+            }
         }
 
         protected async override void OnStartup(StartupEventArgs e)
@@ -144,6 +154,9 @@ namespace SAPConnector
                         case StartupParams.ManufacturerModule:
                             SyncVM = Container.Resolve<ManufacturerSyncViewModel>();
                             break;
+                        case StartupParams.SpecificationAttributeModule:
+                            SyncVM = Container.Resolve<SpecificationAttributeSyncViewModel>();
+                            break;
                     }
 
                     if (SyncVM.Enabled)
@@ -169,7 +182,8 @@ namespace SAPConnector
             ProductModule,
             OrderModule,
             CategoryModule,
-            ManufacturerModule
+            ManufacturerModule,
+            SpecificationAttributeModule
         }
 
         protected override void InitializeModules()

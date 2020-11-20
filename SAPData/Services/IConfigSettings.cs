@@ -30,9 +30,11 @@ namespace SAPData.Services
 
         DateTime LastProductSync { get; set; }
         DateTime LastManufactureSync { get; set; }
+        DateTime LastSpecSync { get; set; }
         void ReloadSettings();
 
         void SaveLastProductSync(DateTime lastsynTime);
         void SaveLastManufacturerSync(DateTime value);
+        void SaveLastSpecificationSync(DateTime value);
     }
 }
