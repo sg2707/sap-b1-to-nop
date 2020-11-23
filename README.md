@@ -6,6 +6,8 @@ Products created and updated in SAP will be pushed to NOP Commerce.
 Category created and updated in SAP will be pushed to NOP Commerce.
 3.Manufacturer Sync module
 Manufacturers created and updated in SAP will be pushed to NOP Commerce.
+3.Product specification attribute Sync module
+Specification attribute created and updated in SAP will be pushed to NOP Commerce.
 
 # Getting Started
 TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:

@@ -42,10 +42,9 @@ namespace SAPData.Models
         //public int? not_approved_total_reviews { get; set; }
 
         public string sku { get; set; }
+        public string manufacturer_part_number { get; set; }
 
-        //public string manufacturer_part_number { get; set; }
-
-        //public string gtin { get; set; }
+        public string gtin { get; set; }
 
         //public bool? is_gift_card { get; set; }
 
@@ -160,15 +159,15 @@ namespace SAPData.Models
 
         //public bool? has_discounts_applied { get; set; }
 
-        //public decimal? weight { get; set; }
+        public decimal? weight { get; set; }
 
-        //public decimal? length { get; set; }
-
-
-        //public decimal? width { get; set; }
+        public decimal? length { get; set; }
 
 
-        //public decimal? height { get; set; }
+        public decimal? width { get; set; }
+
+
+        public decimal? height { get; set; }
 
         //public DateTime? available_start_date_time_utc { get; set; }
 
