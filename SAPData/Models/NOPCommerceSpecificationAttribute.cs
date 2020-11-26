@@ -10,5 +10,12 @@ namespace SAPData.Models
     {
        
         public string name { get; set; }
+
+        public string attribute_id { get; set; }
+
+        public int control_type { get; set; }
+
+        public List<SpecificationAttributeOptions> specification_attribute_options { get; set; }
+
     }
 }

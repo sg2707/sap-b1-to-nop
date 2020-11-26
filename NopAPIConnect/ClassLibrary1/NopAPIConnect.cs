@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using log4net;
 using Newtonsoft.Json.Linq;
+using SAPData.Models;
+using SAPData;
 
 namespace NopAPIConnect
 {
@@ -31,7 +33,7 @@ namespace NopAPIConnect
         {
             _logger = logger;
             _configService = configservice;
-            client = new HttpClient();
+             client = new HttpClient();
             response = new HttpResponseMessage();
             client.BaseAddress = new Uri(configservice.NOP_API_URL);
             client.DefaultRequestHeaders.Accept.Clear();
@@ -267,8 +269,14 @@ namespace NopAPIConnect
         {
             string name = null;
             int id = 0;
+            SpecificationAttributeService _specificationAttributeService = new SpecificationAttributeService();
             foreach (var specAttribute in Specattributes)
             {
+                // list spec attribute
+                if(specAttribute.control_type == 2)
+                specAttribute.specification_attribute_options= _specificationAttributeService.GetSpecificationOptionsList(specAttribute.attribute_id).ToList();
+                else if (specAttribute.control_type == 1)
+                    specAttribute.specification_attribute_options = new List<SpecificationAttributeOptions> { new SpecificationAttributeOptions { name = specAttribute.name, display_order = 0 } };
                 _logger.Info("Specification attribute Api started");
                 response = await client.GetAsync("api/specificationattributes?name="+ specAttribute.name);
                 _logger.Info("Specification attribute Api retrieved rows by name ");

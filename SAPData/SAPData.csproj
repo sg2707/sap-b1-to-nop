@@ -100,6 +100,7 @@
     <Compile Include="Models\NOPCommerceProduct.cs" />
     <Compile Include="Models\NOPCommerceOrder.cs" />
     <Compile Include="Models\NOPCommerceSpecificationAttribute.cs" />
+    <Compile Include="Models\SpecificationAttributeOptions.cs" />
     <Compile Include="OrderService.cs" />
     <Compile Include="SpecificationAttributeService.cs" />
     <Compile Include="Services\ICategoryService.cs" />

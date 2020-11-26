@@ -21,5 +21,16 @@ namespace SAPData
            "exec SI_NopCommerceProductSpecification @LastSpecSync", new SqlParameter("LastSpecSync", LastSpecSync)).ToList();
             return specattribute;
         }
+
+        public List<SpecificationAttributeOptions> GetSpecificationOptionsList(string AttributeId)
+        {
+            DBContext dc = new DBContext();
+            if (!dc.Database.Exists())
+                dc.Database.Connection.Open();
+            dc.Database.CommandTimeout = 120;
+            var specoption = dc.Database.SqlQuery<SpecificationAttributeOptions>(
+           "exec SI_NopCommerceSpecificationOptions @AttributeId", new SqlParameter("AttributeId", AttributeId)).ToList();
+            return specoption;
+        }
     }
 }
