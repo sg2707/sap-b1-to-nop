@@ -12,5 +12,6 @@ public interface ISpecificationAttributeService
 {
         List<NOPCommerceSpecificationAttribute> GetSpecificationAttributeList(DateTime LastSpecSync);
         List<SpecificationAttributeOptions> GetSpecificationOptionsList(string AttributeId);
+        List<NOPCommerceSpecificationAttribute> GetSpecificationAttributeListBySku(string ProductSku);
 }
 }

@@ -17,4 +17,8 @@ namespace NopAPIConnect.Models
         public List<SpecificationAttributeOptions> specification_attribute_options { get; set; }
 
     }
+    public class RootObjectSpec
+    {
+        public List<NOPCommerceApiSpecificationAttribute> specification_attributes { get; set; }
+    }
 }

@@ -105,6 +105,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\NOPCommerceApiProductSpecification.cs" />
     <Compile Include="NopAPIConnect.cs" />
     <Compile Include="INopAPIConnect.cs" />
     <Compile Include="Models\DBContext.cs" />

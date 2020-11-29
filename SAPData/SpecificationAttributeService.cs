@@ -22,6 +22,18 @@ namespace SAPData
             return specattribute;
         }
 
+        public List<NOPCommerceSpecificationAttribute> GetSpecificationAttributeListBySku(string ProductSku)
+        {
+            DBContext dc = new DBContext();
+            if (!dc.Database.Exists())
+                dc.Database.Connection.Open();
+            dc.Database.CommandTimeout = 120;
+            var specattribute = dc.Database.SqlQuery<NOPCommerceSpecificationAttribute>(
+               "exec SI_NopCommerceProductSpecMapping @ProductSku", new SqlParameter("ProductSku", ProductSku)).ToList();
+            return specattribute;
+        }
+
+
         public List<SpecificationAttributeOptions> GetSpecificationOptionsList(string AttributeId)
         {
             DBContext dc = new DBContext();
@@ -32,5 +44,7 @@ namespace SAPData
            "exec SI_NopCommerceSpecificationOptions @AttributeId", new SqlParameter("AttributeId", AttributeId)).ToList();
             return specoption;
         }
+
+
     }
 }
