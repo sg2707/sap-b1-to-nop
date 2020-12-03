@@ -12,12 +12,13 @@ using log4net;
 using Newtonsoft.Json.Linq;
 using SAPData.Models;
 using SAPData;
+using System.Data.SqlClient;
 
 namespace NopAPIConnect
 {
     public class NopAPIConnect : INopAPIConnect
     {
-       
+
 
         private readonly ILog _logger;
 
@@ -33,7 +34,7 @@ namespace NopAPIConnect
         {
             _logger = logger;
             _configService = configservice;
-             client = new HttpClient();
+            client = new HttpClient();
             response = new HttpResponseMessage();
             client.BaseAddress = new Uri(configservice.NOP_API_URL);
             client.DefaultRequestHeaders.Accept.Clear();
@@ -133,7 +134,7 @@ namespace NopAPIConnect
                 product.manufacturer_ids = ManufactureIds.Where(p => p.name == product.manufacturer).Select(p => p.id).ToList();
                 product.category_ids = CategoryIds.Where(p => p.meta_keywords == product.category).Select(p => p.id).ToList();
                 _logger.Info("Product Api started");
-              
+
                 //Load option spect by name
                 response = await client.GetAsync("api/products?sku=" + product.sku);
                 _logger.Info("Product Api retrieved rows by sku ");
@@ -168,7 +169,7 @@ namespace NopAPIConnect
                     _logger.Info("Api updated product record to Nop");
                 }
                 var specAttbts = _specificationAttributeService.GetSpecificationAttributeListBySku(product.sku).ToList();
-                _logger.Info("Retrieve (" + specAttbts.Count + ") specification attributes by ("+ product.sku + " ) from SAP");
+                _logger.Info("Retrieve (" + specAttbts.Count + ") specification attributes by (" + product.sku + " ) from SAP");
                 foreach (var attbt in specAttbts)
                 {
                     if (attbt.control_type == 2)
@@ -176,31 +177,31 @@ namespace NopAPIConnect
                     if (attbt.control_type == 1)
                         attTypeDesc = "CustomText";
                     attresponse = await client.GetAsync("api/specificationattributes?name=" + attbt.name);
-                    _logger.Info("Retrieve specification attribute by " + attbt.name+" from NOP API");
-   
-                        if (attresponse.IsSuccessStatusCode)
-                        {
-                            var specresponse = attresponse.Content.ReadAsStringAsync().Result;
+                    _logger.Info("Retrieve specification attribute by " + attbt.name + " from NOP API");
+
+                    if (attresponse.IsSuccessStatusCode)
+                    {
+                        var specresponse = attresponse.Content.ReadAsStringAsync().Result;
                         if ("{\"specification_attributes\":[]}" != JObject.Parse(specresponse).ToString(Newtonsoft.Json.Formatting.None).Trim())
-                            {
+                        {
                             var result = JsonConvert.DeserializeObject<RootObjectSpec>(specresponse);
                             var specAttOptions = result.specification_attributes[0].specification_attribute_options.Where(a => a.name == attbt.option_name);
                             _logger.Info(specAttOptions.Count());
                             foreach (var specAttOption in specAttOptions)
-                                {
+                            {
                                 var productSpecification = new List<NOPCommerceApiProductSpecification>
                             { new NOPCommerceApiProductSpecification { product_id = id, specification_attribute_option_id = specAttOption.id
                                 , allow_filtering=true, show_on_product_page=true,display_order=0, attribute_type=attTypeDesc } };
-                                    var spoutput = "{  \"product_specification_attribute\": " + JsonConvert.SerializeObject(productSpecification) + "}";
+                                var spoutput = "{  \"product_specification_attribute\": " + JsonConvert.SerializeObject(productSpecification) + "}";
                                 var stringContentspec = new StringContent(spoutput.Replace("[", "").Replace("]", ""));
-                                    postattresponse = await client.PostAsync("api/productspecificationattributes", stringContentspec);
-                                    _logger.Info("Post specification attribute mapping details to NOP");
-                                }
+                                postattresponse = await client.PostAsync("api/productspecificationattributes", stringContentspec);
+                                _logger.Info("Post specification attribute mapping details to NOP");
                             }
                         }
+                    }
 
                 }
-              
+
             }
         }
 
@@ -311,12 +312,12 @@ namespace NopAPIConnect
             foreach (var specAttribute in Specattributes)
             {
                 // list spec attribute
-                if(specAttribute.control_type == 2)
-                specAttribute.specification_attribute_options= _specificationAttributeService.GetSpecificationOptionsList(specAttribute.attribute_id).ToList();
+                if (specAttribute.control_type == 2)
+                    specAttribute.specification_attribute_options = _specificationAttributeService.GetSpecificationOptionsList(specAttribute.attribute_id).ToList();
                 else if (specAttribute.control_type == 1)
                     specAttribute.specification_attribute_options = new List<SpecificationAttributeOptions> { new SpecificationAttributeOptions { name = specAttribute.name, display_order = 0 } };
                 _logger.Info("Specification attribute Api started");
-                response = await client.GetAsync("api/specificationattributes?name="+ specAttribute.name);
+                response = await client.GetAsync("api/specificationattributes?name=" + specAttribute.name);
                 _logger.Info("Specification attribute Api retrieved rows by name ");
                 if (response.IsSuccessStatusCode)
                 {
@@ -348,6 +349,42 @@ namespace NopAPIConnect
                 }
             }
 
+        }
+
+        public void SaveVehicle(List<NOPCommerceApiVehicle> vehicles)
+        {
+            foreach (var vehicle in vehicles)
+            {
+            
+                SAPData.Models.DBContext dc = new SAPData.Models.DBContext();
+                if (!dc.Database.Exists())
+                    dc.Database.Connection.Open();
+                dc.Database.CommandTimeout = 120;
+                dc.Database.ExecuteSqlCommand(
+                "exec  SI_SaveNopCommerceVehicle @Make,@ModelNo,@ModelName,@VehicleChassisGrp, @Chassis, @VehicleEngineGrp, @Engine, @CCPrefix, @CC, @CCSufix, @HandDrive, @TransmissionType, @TransmissionCode, @FuelType,@CountryOfManufacture, @ManufactureStart, @ManufactureEnd, @LastModifiedBy, @LastModifiedDate, @SAPVehicleId, @VehicleProductId ",
+                   new SqlParameter("@Make", vehicle.Make),
+                   new SqlParameter("@ModelNo", vehicle.ModelNo),
+                   new SqlParameter("@ModelName", vehicle.ModelName),
+                   new SqlParameter("@VehicleChassisGrp", vehicle.VehicleChassisGrp),
+                   new SqlParameter("@Chassis", vehicle.Chassis),
+                   new SqlParameter("@VehicleEngineGrp", vehicle.VehicleEngineGrp),
+                   new SqlParameter("@Engine", vehicle.Engine),
+                   new SqlParameter("@CCPrefix", vehicle.CCPrefix ?? ""),
+                   new SqlParameter("@CC", vehicle.CC),
+                   new SqlParameter("@CCSufix", vehicle.CCSufix ?? ""),
+                   new SqlParameter("@HandDrive", vehicle.HandDrive ?? ""),
+                   new SqlParameter("@TransmissionType", vehicle.TransmissionType ?? ""),
+                   new SqlParameter("@TransmissionCode", vehicle.TransmissionCode ?? ""),
+                   new SqlParameter("@FuelType", vehicle.FuelType),
+                   new SqlParameter("@CountryOfManufacture", vehicle.CountryOfManufacture),
+                   new SqlParameter("@ManufactureStart", vehicle.ManufactureStart),
+                   new SqlParameter("@ManufactureEnd", vehicle.ManufactureEnd),
+                   new SqlParameter("@LastModifiedBy", vehicle.LastModifiedBy),
+                   new SqlParameter("@LastModifiedDate", DateTime.Now),
+                   new SqlParameter("@SAPVehicleId", vehicle.SAPVehicleId),
+                   new SqlParameter("@VehicleProductId", vehicle.VehicleProductId));
+
+            }
         }
         /// <summary>
         /// Gets order status by payment status

@@ -44,7 +44,7 @@ namespace SAPData
         public DateTime LastProductSync { get; set; }
         public DateTime LastManufactureSync { get; set; }
         public DateTime LastSpecSync { get; set; }
-
+        public DateTime LastVehicleSync { get; set; }
         public void ReloadSettings()
         {
             //try
@@ -100,6 +100,10 @@ namespace SAPData
         public void SaveLastSpecificationSync(DateTime value)
         {
             saveConfig(nameof(LastSpecSync), value.ToString());
+        }
+        public void SaveLastVehicleSync(DateTime value)
+        {
+            saveConfig(nameof(LastVehicleSync), value.ToString());
         }
         public void saveConfig(string Key, String value)
         {

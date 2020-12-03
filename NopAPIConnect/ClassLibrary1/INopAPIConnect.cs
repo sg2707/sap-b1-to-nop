@@ -12,5 +12,6 @@ namespace NopAPIConnect
         Task SaveManufacturesAsync(List<NOPCommerceApiManufactures> manufacturers);
         Task SaveSpecificationAttributeAsync(List<NOPCommerceApiSpecificationAttribute> Specattributes);
         Task<List<NopCommerceApiOrder>> GetOrdersAsync();
+        void SaveVehicle(List<NOPCommerceApiVehicle> vehicles);
     }
 }

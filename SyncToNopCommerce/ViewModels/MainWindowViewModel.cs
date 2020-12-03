@@ -70,6 +70,7 @@ namespace SAPConnector.ViewModels
             _moduleManager.LoadModule(typeof(ManufacturerModule.ManufacturerModule).Name);
             _moduleManager.LoadModule(typeof(CategoryModule.CategoryModule).Name);
             _moduleManager.LoadModule(typeof(SpecificationAttributeModule.SpecificationAttributeModule).Name);
+            _moduleManager.LoadModule(typeof(VehicleModule.VehicleModule).Name);
         }
 
         ///setting screen binding

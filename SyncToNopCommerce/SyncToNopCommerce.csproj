@@ -188,6 +188,10 @@
       <Project>{f81131f3-baa4-4d47-bc5a-d1b59469cc23}</Project>
       <Name>Utilities</Name>
     </ProjectReference>
+    <ProjectReference Include="..\VehicleModule\VehicleModule.csproj">
+      <Project>{579da719-e10f-40b8-aee4-6bd106630ef4}</Project>
+      <Name>VehicleModule</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\AlterTableCompanyManagement.sql" />

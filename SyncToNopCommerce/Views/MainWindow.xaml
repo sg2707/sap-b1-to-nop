@@ -35,6 +35,7 @@
                     <ContentControl prism:RegionManager.RegionName="{x:Static localUtil:RegionNames.CategoryRegion }"  ></ContentControl>
                     <ContentControl prism:RegionManager.RegionName="{x:Static localUtil:RegionNames.ManufacturerRegion }"  ></ContentControl>
                     <ContentControl prism:RegionManager.RegionName="{x:Static localUtil:RegionNames.SpecificationAttributeRegion }"  ></ContentControl>
+                    <ContentControl prism:RegionManager.RegionName="{x:Static localUtil:RegionNames.VehicleRegion }"  ></ContentControl>
                 </StackPanel>
 
             </StackPanel>
