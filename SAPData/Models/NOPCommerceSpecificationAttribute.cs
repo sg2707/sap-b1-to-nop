@@ -15,6 +15,7 @@ namespace SAPData.Models
 
         public int control_type { get; set; }
 
+        public string option_name { get; set; }
         public List<SpecificationAttributeOptions> specification_attribute_options { get; set; }
 
     }
