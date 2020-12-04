@@ -42,9 +42,9 @@ namespace VehicleModule.ViewModels
             try
             {
                 var StartTime = DateTime.Now;
-                _logger.Info("Starting product sync");
-                var sapProducts = _vehicleService.GetVehicleList(_configSettings.LastProductSync);
-                _logger.Info($"Read ({sapProducts?.Count()}) products from SAP");
+                _logger.Info("Starting vehicles sync");
+                var sapVehicles = _vehicleService.GetVehicleList(_configSettings.LastProductSync);
+                _logger.Info($"Read ({sapVehicles?.Count()}) vehicles from SAP");
                 //Initialize the mapper
                 var config = new MapperConfiguration(cfg =>
                         cfg.CreateMap<NOPCommerceVehicle, NOPCommerceApiVehicle>()
@@ -55,14 +55,14 @@ namespace VehicleModule.ViewModels
                     );
                 //Using automapper
                 var mapper = new Mapper(config);
-                var apiProducts = mapper.Map<List<NOPCommerceApiVehicle>>(sapProducts);
+                var apiVehicles = mapper.Map<List<NOPCommerceApiVehicle>>(sapVehicles);
 
-                //_logger.Info($"Posting ({sapProducts?.Count()}) products to NOP");
+                _logger.Info($"Posting ({apiVehicles?.Count()}) vehicles to NOP");
 
-                 _nopApiConnect.SaveVehicle(apiProducts);
-                //_configSettings.SaveLastProductSync(StartTime);
+                _nopApiConnect.SaveVehicle(apiVehicles);
+                _configSettings.SaveLastVehicleSync(StartTime);
                 ////save 
-                //_logger.Info($"Posting ({sapProducts?.Count()}) products sync completed");
+                _logger.Info($"Posting ({sapVehicles?.Count()}) vehicles sync completed");
             }
             catch (Exception ex)
             {

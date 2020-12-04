@@ -348,42 +348,38 @@ namespace NopAPIConnect
                     _logger.Info("Api updated specification attribute to Nop");
                 }
             }
-
         }
 
         public void SaveVehicle(List<NOPCommerceApiVehicle> vehicles)
         {
             foreach (var vehicle in vehicles)
             {
-            
                 SAPData.Models.DBContext dc = new SAPData.Models.DBContext();
                 if (!dc.Database.Exists())
                     dc.Database.Connection.Open();
                 dc.Database.CommandTimeout = 120;
                 dc.Database.ExecuteSqlCommand(
-                "exec  SI_SaveNopCommerceVehicle @Make,@ModelNo,@ModelName,@VehicleChassisGrp, @Chassis, @VehicleEngineGrp, @Engine, @CCPrefix, @CC, @CCSufix, @HandDrive, @TransmissionType, @TransmissionCode, @FuelType,@CountryOfManufacture, @ManufactureStart, @ManufactureEnd, @LastModifiedBy, @LastModifiedDate, @SAPVehicleId, @VehicleProductId ",
-                   new SqlParameter("@Make", vehicle.Make),
-                   new SqlParameter("@ModelNo", vehicle.ModelNo),
-                   new SqlParameter("@ModelName", vehicle.ModelName),
-                   new SqlParameter("@VehicleChassisGrp", vehicle.VehicleChassisGrp),
-                   new SqlParameter("@Chassis", vehicle.Chassis),
-                   new SqlParameter("@VehicleEngineGrp", vehicle.VehicleEngineGrp),
-                   new SqlParameter("@Engine", vehicle.Engine),
-                   new SqlParameter("@CCPrefix", vehicle.CCPrefix ?? ""),
-                   new SqlParameter("@CC", vehicle.CC),
-                   new SqlParameter("@CCSufix", vehicle.CCSufix ?? ""),
-                   new SqlParameter("@HandDrive", vehicle.HandDrive ?? ""),
-                   new SqlParameter("@TransmissionType", vehicle.TransmissionType ?? ""),
-                   new SqlParameter("@TransmissionCode", vehicle.TransmissionCode ?? ""),
-                   new SqlParameter("@FuelType", vehicle.FuelType),
-                   new SqlParameter("@CountryOfManufacture", vehicle.CountryOfManufacture),
-                   new SqlParameter("@ManufactureStart", vehicle.ManufactureStart),
+                "exec  SI_SaveNopCommerceVehicle @Make,@ModelNo,@ModelName,@VehicleChassisGrp, @Chassis, @VehicleEngineGrp, @Engine, @CCPrefix, @CC, @CCSufix, @HandDrive, @TransmissionType, @TransmissionCode, @FuelType,@CountryOfManufacture, @ManufactureStart, @ManufactureEnd, @LastModifiedBy, @LastModifiedDate, @SAPVehicleId ",
+                   new SqlParameter("@Make", vehicle.Make ?? DBNull.Value.ToString()),
+                   new SqlParameter("@ModelNo", vehicle.ModelNo ?? DBNull.Value.ToString()),
+                   new SqlParameter("@ModelName", vehicle.ModelName ?? DBNull.Value.ToString()),
+                   new SqlParameter("@VehicleChassisGrp", vehicle.VehicleChassisGrp ?? DBNull.Value.ToString()),
+                   new SqlParameter("@Chassis", vehicle.Chassis ?? DBNull.Value.ToString()),
+                   new SqlParameter("@VehicleEngineGrp", vehicle.VehicleEngineGrp ?? DBNull.Value.ToString()),
+                   new SqlParameter("@Engine", vehicle.Engine ?? DBNull.Value.ToString()),
+                   new SqlParameter("@CCPrefix", vehicle.CCPrefix ?? DBNull.Value.ToString()),
+                   new SqlParameter("@CC", vehicle.CC ?? DBNull.Value.ToString()),
+                   new SqlParameter("@CCSufix", vehicle.CCSufix ?? DBNull.Value.ToString()),
+                   new SqlParameter("@HandDrive", vehicle.HandDrive ?? DBNull.Value.ToString()),
+                   new SqlParameter("@TransmissionType", vehicle.TransmissionType ?? DBNull.Value.ToString()),
+                   new SqlParameter("@TransmissionCode", vehicle.TransmissionCode ?? DBNull.Value.ToString()),
+                   new SqlParameter("@FuelType", vehicle.FuelType ?? DBNull.Value.ToString()),
+                   new SqlParameter("@CountryOfManufacture", vehicle.CountryOfManufacture ?? DBNull.Value.ToString()),
+                   new SqlParameter("@ManufactureStart", vehicle.ManufactureStart ),
                    new SqlParameter("@ManufactureEnd", vehicle.ManufactureEnd),
-                   new SqlParameter("@LastModifiedBy", vehicle.LastModifiedBy),
-                   new SqlParameter("@LastModifiedDate", DateTime.Now),
-                   new SqlParameter("@SAPVehicleId", vehicle.SAPVehicleId),
-                   new SqlParameter("@VehicleProductId", vehicle.VehicleProductId));
-
+                   new SqlParameter("@LastModifiedBy", vehicle.LastModifiedBy ?? DBNull.Value.ToString()),
+                   new SqlParameter("@LastModifiedDate", vehicle.LastModifiedDate),
+                   new SqlParameter("@SAPVehicleId", vehicle.SAPVehicleId));
             }
         }
         /// <summary>

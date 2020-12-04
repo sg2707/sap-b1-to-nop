@@ -49,6 +49,5 @@ namespace SAPData.Models
 
         public int SAPVehicleId { get; set; }
 
-        public int VehicleProductId { get; set; }
     }
 }

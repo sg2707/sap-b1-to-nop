@@ -201,6 +201,7 @@
     <Content Include="Scripts\SI_NopCommerceProductSpecification.sql" />
     <Content Include="Scripts\SI_NopCommerceProductSpecMapping.sql" />
     <Content Include="Scripts\SI_NopCommerceSpecificationOption.sql" />
+    <Content Include="Scripts\SI_NopCommerceVehicle.sql" />
     <Content Include="Scripts\SI_VendorFolderPath.sql" />
   </ItemGroup>
   <ItemGroup>
