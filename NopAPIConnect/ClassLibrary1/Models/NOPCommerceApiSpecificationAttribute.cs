@@ -22,4 +22,5 @@ namespace NopAPIConnect.Models
     {
         public List<NOPCommerceApiSpecificationAttribute> specification_attributes { get; set; }
     }
+
 }

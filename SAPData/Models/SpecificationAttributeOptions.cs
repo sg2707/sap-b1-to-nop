@@ -8,7 +8,8 @@ namespace SAPData.Models
 {
   public  class SpecificationAttributeOptions
     {
-        public int id { get; set; }
+
+       public int id { get; set; }
         public string name { get; set; }
 
         public int specification_attribute_id { get; set; }
@@ -17,5 +18,5 @@ namespace SAPData.Models
         public int display_order { get; set; }
     }
 
-   
+  
 }

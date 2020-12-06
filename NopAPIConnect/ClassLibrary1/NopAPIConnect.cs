@@ -190,7 +190,7 @@ namespace NopAPIConnect
                             foreach (var specAttOption in specAttOptions)
                             {
                                 var productSpecification = new List<NOPCommerceApiProductSpecification>
-                            { new NOPCommerceApiProductSpecification { product_id = id, specification_attribute_option_id = specAttOption.id
+                                { new NOPCommerceApiProductSpecification { product_id = id, specification_attribute_option_id = specAttOption.id
                                 , allow_filtering=true, show_on_product_page=true,display_order=0, attribute_type=attTypeDesc } };
                                 var spoutput = "{  \"product_specification_attribute\": " + JsonConvert.SerializeObject(productSpecification) + "}";
                                 var stringContentspec = new StringContent(spoutput.Replace("[", "").Replace("]", ""));
@@ -312,10 +312,6 @@ namespace NopAPIConnect
             foreach (var specAttribute in Specattributes)
             {
                 // list spec attribute
-                if (specAttribute.control_type == 2)
-                    specAttribute.specification_attribute_options = _specificationAttributeService.GetSpecificationOptionsList(specAttribute.attribute_id).ToList();
-                else if (specAttribute.control_type == 1)
-                    specAttribute.specification_attribute_options = new List<SpecificationAttributeOptions> { new SpecificationAttributeOptions { name = specAttribute.name, display_order = 0 } };
                 _logger.Info("Specification attribute Api started");
                 response = await client.GetAsync("api/specificationattributes?name=" + specAttribute.name);
                 _logger.Info("Specification attribute Api retrieved rows by name ");
@@ -335,8 +331,12 @@ namespace NopAPIConnect
                         id = 0;
                     }
                 }
+                if (specAttribute.control_type == 2)
+                    specAttribute.specification_attribute_options = _specificationAttributeService.GetSpecificationOptionsList(specAttribute.attribute_id).ToList();
+                else if (specAttribute.control_type == 1)
+                    specAttribute.specification_attribute_options = new List<SpecificationAttributeOptions> { new SpecificationAttributeOptions { name = specAttribute.name, display_order = 0, specification_attribute_id = id } };
                 var output = "{  \"specification_attribute\": " + JsonConvert.SerializeObject(specAttribute) + "}";
-                var stringContent = new StringContent(output);
+                var stringContent = new StringContent(output.Replace("\"id\":0,", ""));
                 if (name == null)
                 {
                     response = await client.PostAsync("api/specificationattributes", stringContent);
