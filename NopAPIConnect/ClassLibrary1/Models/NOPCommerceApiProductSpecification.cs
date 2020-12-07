@@ -28,4 +28,9 @@ namespace NopAPIConnect.Models
        
 
     }
+
+    public class RootObjectProductSpecMap
+    {
+        public List<NOPCommerceApiProductSpecification> product_specification_attributes { get; set; }
+    }
 }
