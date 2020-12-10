@@ -1,4 +1,4 @@
-create procedure SI_NopCommerceManufacturer @LastCategorySync datetime
+create procedure SI_NopCommerceManufacturer @LastManufacturSync datetime
  as
  begin
 select U_SI_Brand [name],max((cast(concat(Convert(date,CreateDate),

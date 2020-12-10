@@ -25,12 +25,12 @@ cast(Grp.U_SI_MainGroup as nvarchar)  [category],isnull(U_SI_Length,0) [length]
 from OITM [Product]
 inner join [OITW] Stock on Product.ItemCode = Stock.ItemCode and Stock.WhsCode = '01'
 inner join [OITB] Grp on Grp.ItmsGrpCod = Product.ItmsGrpCod
-where frozenFor = 'N' and  Grp.U_SI_MainGroup is not null and ( (cast(concat(Convert(date,Product.CreateDate),
-' ', convert(char(8), dateadd(second, Product.createts, '') , 114)) as datetime))
-> @LastProductSync or (cast(concat(Convert(date,Product.UpdateDate),
-' ', convert(char(8), dateadd(second, Product.UpdateTS, '') , 114)) as datetime))
-> @LastProductSync) 
-
-
+where frozenFor = 'N' and  Grp.U_SI_MainGroup is not null and(
+ (Product.CreateDate > cast(@LastProductSync as DATE) or 
+ (Product.CreateDate = cast(@LastProductSync as DATE) AND Product.CreateTS >=  FORMAT(@LastProductSync,'HHmmss')))  or
+ (Product.UpdateDate > cast(@LastProductSync as DATE) or 
+ (Product.UpdateDate = cast(@LastProductSync as DATE) AND Product.UpdateTS >=  FORMAT(@LastProductSync,'HHmmss')))) 
 end
+
+
 
