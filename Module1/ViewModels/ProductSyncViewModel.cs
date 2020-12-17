@@ -15,7 +15,6 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Net.Http.Formatting;
 using Newtonsoft.Json;
 using NopAPIConnect;
 using NopAPIConnect.Models;

@@ -173,54 +173,60 @@ namespace NopAPIConnect
                 _logger.Info("Retrieve (" + specAttbts.Count + ") specification attributes by (" + product.sku + " ) from SAP");
 
                 /////-------------------
-                specprodresponse = await client.GetAsync("api/productspecificationattributes?product_id=" + id);
-                _logger.Info("Specification attribute mapping Api retrieved rows by product id ");
-                if (specprodresponse.IsSuccessStatusCode)
+                if (specAttbts.Count > 0 )
                 {
-                    _logger.Info("Specification attribute Api response success");
-                    var specprod = specprodresponse.Content.ReadAsStringAsync().Result;
-                    if ("{\"product_specification_attributes\":[]}" != JObject.Parse(specprod).ToString(Newtonsoft.Json.Formatting.None).Trim())
+                    specprodresponse = await client.GetAsync("api/productspecificationattributes?product_id=" + id);
+                    _logger.Info("Specification attribute mapping Api retrieved rows by product id ");
+                    if (specprodresponse.IsSuccessStatusCode)
                     {
-                        var specprodmap = JsonConvert.DeserializeObject<RootObjectProductSpecMap>(specprod);
-                        var listSpecs = specprodmap.product_specification_attributes;
-                        foreach (var listSpec in listSpecs)
+                        _logger.Info("Specification attribute Api response success");
+                        var specprod = specprodresponse.Content.ReadAsStringAsync().Result;
+                        if ("{\"product_specification_attributes\":[]}" != JObject.Parse(specprod).ToString(Newtonsoft.Json.Formatting.None).Trim())
                         {
-                            await client.DeleteAsync("api/productspecificationattributes/" + listSpec.id);
-                        }
-                        _logger.Info("deleted existing specification attribute mapping by id ");
-                    }
-
-                    ///----------------------------------
-                    foreach (var attbt in specAttbts)
-                    {
-                        if (attbt.control_type == 2)
-                            attTypeDesc = "Option";
-                        if (attbt.control_type == 1)
-                            attTypeDesc = "CustomText";
-                        attresponse = await client.GetAsync("api/specificationattributes?name=" + attbt.name);
-                        _logger.Info("Retrieve specification attribute by " + attbt.name + " from NOP API");
-
-                        if (attresponse.IsSuccessStatusCode)
-                        {
-                            var specresponse = attresponse.Content.ReadAsStringAsync().Result;
-                            if ("{\"specification_attributes\":[]}" != JObject.Parse(specresponse).ToString(Newtonsoft.Json.Formatting.None).Trim())
+                            var specprodmap = JsonConvert.DeserializeObject<RootObjectProductSpecMap>(specprod);
+                            var listSpecs = specprodmap.product_specification_attributes;
+                            if (id > 0)
                             {
-                                var result = JsonConvert.DeserializeObject<RootObjectSpec>(specresponse);
-                                var specAttOptions = result.specification_attributes[0].specification_attribute_options.Where(a => a.name == attbt.option_name);
-                                foreach (var specAttOption in specAttOptions)
+                                foreach (var listSpec in listSpecs)
                                 {
-                                    var productSpecification = new List<NOPCommerceApiProductSpecification>
-                                    { new NOPCommerceApiProductSpecification { product_id = id, specification_attribute_option_id = specAttOption.id
-                                    , allow_filtering=true, show_on_product_page=true,display_order=0, attribute_type=attTypeDesc } };
-                                    var spoutput = "{  \"product_specification_attribute\": " + JsonConvert.SerializeObject(productSpecification) + "}";
-                                    var stringContentspec = new StringContent(spoutput.Replace("[", "").Replace("]", ""));
-                                    postattresponse = await client.PostAsync("api/productspecificationattributes", stringContentspec);
-                                    _logger.Info("Post specification attribute mapping details to NOP");
-
+                                    await client.DeleteAsync("api/productspecificationattributes/" + listSpec.id);
+                                    _logger.Info("deleted existing specification attribute mapping by id  " + listSpec.id + ", product Id " + id);
                                 }
                             }
                         }
 
+                        ///----------------------------------
+                        foreach (var attbt in specAttbts)
+                        {
+                            if (attbt.control_type == 2)
+                                attTypeDesc = "Option";
+                            if (attbt.control_type == 1)
+                                attTypeDesc = "CustomText";
+                            attresponse = await client.GetAsync("api/specificationattributes?name=" + attbt.name);
+                            _logger.Info("Retrieve specification attribute by " + attbt.name + " from NOP API");
+
+                            if (attresponse.IsSuccessStatusCode)
+                            {
+                                var specresponse = attresponse.Content.ReadAsStringAsync().Result;
+                                if ("{\"specification_attributes\":[]}" != JObject.Parse(specresponse).ToString(Newtonsoft.Json.Formatting.None).Trim())
+                                {
+                                    var result = JsonConvert.DeserializeObject<RootObjectSpec>(specresponse);
+                                    var specAttOptions = result.specification_attributes[0].specification_attribute_options.Where(a => a.name == attbt.option_name);
+                                    foreach (var specAttOption in specAttOptions)
+                                    {
+                                        var productSpecification = new List<NOPCommerceApiProductSpecification>
+                                    { new NOPCommerceApiProductSpecification { product_id = id, specification_attribute_option_id = specAttOption.id
+                                    , allow_filtering=true, show_on_product_page=true,display_order=0, attribute_type=attTypeDesc } };
+                                        var spoutput = "{  \"product_specification_attribute\": " + JsonConvert.SerializeObject(productSpecification) + "}";
+                                        var stringContentspec = new StringContent(spoutput.Replace("[", "").Replace("]", ""));
+                                        postattresponse = await client.PostAsync("api/productspecificationattributes", stringContentspec);
+                                        _logger.Info("Post specification attribute mapping details to NOP");
+
+                                    }
+                                }
+                            }
+
+                        }
                     }
                 }
             }

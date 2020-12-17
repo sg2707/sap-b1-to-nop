@@ -1,7 +1,8 @@
 create procedure SI_NopCommerceProductSpecMapping @ProductSku nvarchar(100)
  as
  begin
-select T0.U_ControlType[control_type],T0.U_Description [name], T1.U_EntityID[attribute_id], T4.U_Description[option_name] from
+select T0.U_ControlType[control_type],T0.U_Description [name], T1.U_EntityID[attribute_id],
+case when T0.U_ControlType = 2 then T4.U_Description else T0.U_Description end as [option_name] from
 [@SI_ATTRIBUTE] T0
 inner join [@SI_ITEM_ATTRIBUTE] T1 on T0.U_AttributeID = T1.U_AttributeID
 inner join OITM T2 on T2.ItemCode = T1.U_EntityID
