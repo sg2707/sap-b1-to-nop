@@ -58,5 +58,8 @@ namespace SAPData.Models
 
         public string se_name { get; set; }
 
+
+        public string parent_meta_keywords { get; set; }
+
     }
 }

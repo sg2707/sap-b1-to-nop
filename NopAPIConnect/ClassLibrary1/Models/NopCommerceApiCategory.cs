@@ -17,13 +17,14 @@ namespace NopAPIConnect.Models
 
         public string meta_keywords { get; set; }
 
-      
+        public string parent_meta_keywords { get; set; }
+
+
         //public string meta_description { get; set; }
 
         //public string meta_title { get; set; }
 
-        //public int? parent_category_id { get; set; }
-
+        public int? parent_category_id { get; set; }
 
         //public int? page_size { get; set; }
 

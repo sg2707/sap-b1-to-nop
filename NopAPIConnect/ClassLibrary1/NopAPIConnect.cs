@@ -173,7 +173,7 @@ namespace NopAPIConnect
                 _logger.Info("Retrieve (" + specAttbts.Count + ") specification attributes by (" + product.sku + " ) from SAP");
 
                 /////-------------------
-                if (specAttbts.Count > 0 )
+                if (specAttbts.Count > 0)
                 {
                     specprodresponse = await client.GetAsync("api/productspecificationattributes?product_id=" + id);
                     _logger.Info("Specification attribute mapping Api retrieved rows by product id ");
@@ -241,7 +241,10 @@ namespace NopAPIConnect
         public async Task SaveCategoriesAsync(List<NopCommerceApiCategory> categories)
         {
             string metakey = null;
+            StringContent stringContent = null;
             int id = 0;
+            int pid = 0;
+            HttpResponseMessage paresponse = new HttpResponseMessage();
             foreach (var category in categories)
             {
                 _logger.Info("Category Api started");
@@ -265,8 +268,31 @@ namespace NopAPIConnect
                         id = 0;
                     }
                 }
-                var output = "{  \"category\": " + JsonConvert.SerializeObject(category) + "}";
-                var stringContent = new StringContent(output);
+                if (category.parent_meta_keywords != null)
+                {
+                    paresponse = await client.GetAsync("api/categories?meta_keywords=" + category.parent_meta_keywords);
+                    _logger.Info("Sub category Api retrieved rows by meta keywords ");
+                    if (paresponse.IsSuccessStatusCode)
+                    {
+                        var ctgptresponse = paresponse.Content.ReadAsStringAsync().Result;
+                        if ("{\"categories\":[]}" != JObject.Parse(ctgptresponse).ToString(Newtonsoft.Json.Formatting.None).Trim())
+                        {
+                            _logger.Info("Category record present next process update record to NOP");
+                            dynamic newptctg = JsonConvert.DeserializeObject(ctgptresponse);
+                            pid = newptctg.categories[0].id;
+                        }
+                    }
+                    var listCatg =
+                    new NopCommerceApiCategory() { name = category.name, meta_keywords = category.meta_keywords, parent_category_id = pid };
+                    var output = "{  \"category\": " + JsonConvert.SerializeObject(listCatg) + "}";
+                    stringContent = new StringContent(output);
+                }
+                else
+                {
+                    var output = "{  \"category\": " + JsonConvert.SerializeObject(category) + "}";
+                    stringContent = new StringContent(output);
+                }
+
                 if (metakey == null)
                 {
                     response = await client.PostAsync("api/categories", stringContent);
