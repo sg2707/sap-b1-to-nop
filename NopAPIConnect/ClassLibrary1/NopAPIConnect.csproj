@@ -126,6 +126,10 @@
       <Project>{C6281814-E045-407C-AECF-7348815D5B24}</Project>
       <Name>SAPData</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Utilities\Utilities.csproj">
+      <Project>{B047A49F-FF28-494A-AD1F-3EA2C60EF180}</Project>
+      <Name>Utilities</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

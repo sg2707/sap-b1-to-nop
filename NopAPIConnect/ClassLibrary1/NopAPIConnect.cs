@@ -13,6 +13,7 @@ using Newtonsoft.Json.Linq;
 using SAPData.Models;
 using SAPData;
 using System.Data.SqlClient;
+using Utilities;
 
 namespace NopAPIConnect
 {
@@ -117,7 +118,7 @@ namespace NopAPIConnect
         /// </summary>
         /// <param name="products">Product list</param>
         /// <returns></returns>
-        public async Task SaveProductsAsync(List<NOPCommerceApiProduct> products)
+        public async Task SaveProductsAsync(List<NOPCommerceApiProduct> products, ProgressBinder progress)
         {
             string sku = null;
             string attTypeDesc = null;
@@ -132,6 +133,9 @@ namespace NopAPIConnect
             _logger.Info("Retrived rows from categories Api");
             foreach (var product in products)
             {
+                if (progress.CancellationToken.IsCancellationRequested)
+                    throw new Exception("User cancelled.");
+
                 product.manufacturer_ids = ManufactureIds.Where(p => p.name == product.manufacturer).Select(p => p.id).ToList();
                 product.category_ids = CategoryIds.Where(p => p.meta_keywords == product.category).Select(p => p.id).ToList();
                 _logger.Info("Product Api started");
@@ -229,6 +233,7 @@ namespace NopAPIConnect
                         }
                     }
                 }
+                
             }
 
         }
