@@ -13,6 +13,7 @@ namespace NopAPIConnect.Models
 
         //private int? _productTypeId;
         //public bool? visible_individually { get; set; }
+        public int id { get; set; }
 
         public string name { get; set; }
 
@@ -250,6 +251,15 @@ namespace NopAPIConnect.Models
         //public string se_name { get; set; }
 
         public List<int> category_ids { get; set; }
+    }
+
+    public class NOPCommerceApiProducts {
+        public NOPCommerceApiProducts()
+        {
+            products = new List<NOPCommerceApiProduct>();
+        }
+
+        public List<NOPCommerceApiProduct> products { get; set; }
     }
 }
 

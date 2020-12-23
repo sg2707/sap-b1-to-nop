@@ -61,7 +61,7 @@ namespace Module1.ViewModels
         {
             try
             {
-                var StartTime = DateTime.Now;
+                 var StartTime = DateTime.Now;
                 _eventAgg.GetEvent<StatusMessageEvent>().Publish($"Starting product sync");
 
                 var sapProducts = _productService.GetProductList(_configSettings.LastProductSync);
