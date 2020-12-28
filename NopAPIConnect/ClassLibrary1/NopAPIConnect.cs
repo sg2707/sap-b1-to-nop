@@ -122,6 +122,7 @@ namespace NopAPIConnect
         {
             string sku = null;
             string attTypeDesc = null;
+            string attOptName = null;
             int id = 0;
             SpecificationAttributeService _specificationAttributeService = new SpecificationAttributeService();
             HttpResponseMessage attresponse = new HttpResponseMessage();
@@ -224,17 +225,21 @@ namespace NopAPIConnect
                                     , allow_filtering=true, show_on_product_page=true,display_order=0, attribute_type=attTypeDesc } };
                                         var spoutput = "{  \"product_specification_attribute\": " + JsonConvert.SerializeObject(productSpecification) + "}";
                                         var stringContentspec = new StringContent(spoutput.Replace("[", "").Replace("]", ""));
-                                        postattresponse = await client.PostAsync("api/productspecificationattributes", stringContentspec);
-                                        _logger.Info("Post specification attribute mapping details to NOP");
-
+                                        if (attOptName != attbt.option_name)
+                                        {
+                                            postattresponse = await client.PostAsync("api/productspecificationattributes", stringContentspec);
+                                            _logger.Info("Post specification attribute mapping details to NOP");
+                                            attOptName = attbt.option_name;
+                                        }
                                     }
+                                    attOptName = null;
                                 }
                             }
-
+                           
                         }
                     }
+
                 }
-                
             }
 
         }
