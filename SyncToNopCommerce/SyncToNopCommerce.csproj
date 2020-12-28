@@ -154,6 +154,9 @@
     <PackageReference Include="Prism.Unity">
       <Version>7.2.0.1422</Version>
     </PackageReference>
+    <PackageReference Include="System.Net.Http">
+      <Version>4.3.4</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CategoryModule\CategoryModule.csproj">
@@ -176,6 +179,10 @@
       <Project>{d9f23c9c-fddd-4665-85ea-a948d84e9df6}</Project>
       <Name>SAPData</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SpecificationAttributeModule\SpecificationAttributeModule.csproj">
+      <Project>{40f12735-b478-46b8-a6f8-2f5c6b26317e}</Project>
+      <Name>SpecificationAttributeModule</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SyncBase\SyncBase.csproj">
       <Project>{F3EB2FF1-A88F-4F63-8EC9-BAE6C8E00E33}</Project>
       <Name>SyncBase</Name>
@@ -184,12 +191,20 @@
       <Project>{f81131f3-baa4-4d47-bc5a-d1b59469cc23}</Project>
       <Name>Utilities</Name>
     </ProjectReference>
+    <ProjectReference Include="..\VehicleModule\VehicleModule.csproj">
+      <Project>{579da719-e10f-40b8-aee4-6bd106630ef4}</Project>
+      <Name>VehicleModule</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\AlterTableCompanyManagement.sql" />
     <Content Include="Scripts\SI_GetCompanyList.sql" />
     <Content Include="Scripts\SI_NopCommerceCategory.sql" />
     <Content Include="Scripts\SI_NopCommerceProduct.sql" />
+    <Content Include="Scripts\SI_NopCommerceProductSpecification.sql" />
+    <Content Include="Scripts\SI_NopCommerceProductSpecMapping.sql" />
+    <Content Include="Scripts\SI_NopCommerceSpecificationOption.sql" />
+    <Content Include="Scripts\SI_NopCommerceVehicle.sql" />
     <Content Include="Scripts\SI_VendorFolderPath.sql" />
   </ItemGroup>
   <ItemGroup>

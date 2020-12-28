@@ -4,17 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A1FA9FC2-FF66-43B2-8F2B-591A2EF8EA5A}</ProjectGuid>
+    <ProjectGuid>{40F12735-B478-46B8-A6F8-2F5C6B26317E}</ProjectGuid>
     <OutputType>library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ProductModule</RootNamespace>
-    <AssemblyName>ProductModule</AssemblyName>
+    <RootNamespace>SpecificationAttributeModule</RootNamespace>
+    <AssemblyName>SpecificationAttributeModule</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -36,10 +35,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Users\Saif\Desktop\System.Net.Http.Formatting.dll</HintPath>
-    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -54,7 +49,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ProductModule.cs" />
+    <Compile Include="SpecificationAttributeModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -68,10 +63,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="ViewModels\ProductSyncViewModel.cs" />
-    <Compile Include="Views\ViewA.xaml.cs">
-      <DependentUpon>ViewA.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="ViewModels\SpecificationAttributeSyncViewModel.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -83,40 +75,39 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Views\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Prism.Core">
+      <Version>7.2.0.1422</Version>
+    </PackageReference>
+    <PackageReference Include="Prism.Wpf" Version="7.2.0.1422" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CategoryModule\CategoryModule.csproj">
+      <Project>{7bd97767-2585-4cdd-8d1f-f5384ff49492}</Project>
+      <Name>CategoryModule</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Module1\ProductModule.csproj">
+      <Project>{a1fa9fc2-ff66-43b2-8f2b-591a2ef8ea5a}</Project>
+      <Name>ProductModule</Name>
+    </ProjectReference>
     <ProjectReference Include="..\NopAPIConnect\ClassLibrary1\NopAPIConnect.csproj">
       <Project>{60685f51-a87c-425e-9a58-39c153f23d71}</Project>
       <Name>NopAPIConnect</Name>
     </ProjectReference>
     <ProjectReference Include="..\SAPData\SAPData.csproj">
-      <Project>{d9f23c9c-fddd-4665-85ea-a948d84e9df6}</Project>
+      <Project>{c6281814-e045-407c-aecf-7348815d5b24}</Project>
       <Name>SAPData</Name>
     </ProjectReference>
     <ProjectReference Include="..\SyncBase\SyncBase.csproj">
-      <Project>{f3eb2ff1-a88f-4f63-8ec9-bae6c8e00e33}</Project>
+      <Project>{9a346f24-4bc5-43f5-8403-668ec534b59d}</Project>
       <Name>SyncBase</Name>
     </ProjectReference>
     <ProjectReference Include="..\Utilities\Utilities.csproj">
-      <Project>{f81131f3-baa4-4d47-bc5a-d1b59469cc23}</Project>
+      <Project>{b047a49f-ff28-494a-ad1f-3ea2c60ef180}</Project>
       <Name>Utilities</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="Views\ViewA.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="AutoMapper">
-      <Version>10.0.0</Version>
-    </PackageReference>
-    <PackageReference Include="EntityFramework">
-      <Version>6.2.0</Version>
-    </PackageReference>
-    <PackageReference Include="Newtonsoft.Json">
-      <Version>12.0.3</Version>
-    </PackageReference>
-    <PackageReference Include="Prism.Wpf" Version="7.2.0.1422" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

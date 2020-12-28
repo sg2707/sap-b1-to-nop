@@ -13,6 +13,7 @@ namespace NopAPIConnect.Models
 
         //private int? _productTypeId;
         //public bool? visible_individually { get; set; }
+        public int id { get; set; }
 
         public string name { get; set; }
 
@@ -43,9 +44,9 @@ namespace NopAPIConnect.Models
 
         public string sku { get; set; }
 
-        //public string manufacturer_part_number { get; set; }
+        public string manufacturer_part_number { get; set; }
 
-        //public string gtin { get; set; }
+        public string gtin { get; set; }
 
         //public bool? is_gift_card { get; set; }
 
@@ -89,7 +90,7 @@ namespace NopAPIConnect.Models
 
         //public int? manage_inventory_method_id { get; set; }
 
-         public int? stock_quantity { get; set; }
+        public int? stock_quantity { get; set; }
         //public bool? display_stock_availability { get; set; }
 
         //public bool? display_stock_quantity { get; set; }
@@ -160,15 +161,15 @@ namespace NopAPIConnect.Models
 
         //public bool? has_discounts_applied { get; set; }
 
-        //public decimal? weight { get; set; }
+        public decimal? weight { get; set; }
 
-        //public decimal? length { get; set; }
-
-
-        //public decimal? width { get; set; }
+        public decimal? length { get; set; }
 
 
-        //public decimal? height { get; set; }
+        public decimal? width { get; set; }
+
+
+        public decimal? height { get; set; }
 
         //public DateTime? available_start_date_time_utc { get; set; }
 
@@ -250,6 +251,15 @@ namespace NopAPIConnect.Models
         //public string se_name { get; set; }
 
         public List<int> category_ids { get; set; }
+    }
+
+    public class NOPCommerceApiProducts {
+        public NOPCommerceApiProducts()
+        {
+            products = new List<NOPCommerceApiProduct>();
+        }
+
+        public List<NOPCommerceApiProduct> products { get; set; }
     }
 }
 

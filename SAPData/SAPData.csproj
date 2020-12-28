@@ -99,10 +99,16 @@
     <Compile Include="Models\NOPCommerceManufactures.cs" />
     <Compile Include="Models\NOPCommerceProduct.cs" />
     <Compile Include="Models\NOPCommerceOrder.cs" />
+    <Compile Include="Models\NOPCommerceSpecificationAttribute.cs" />
+    <Compile Include="Models\NOPCommerceVehicle.cs" />
+    <Compile Include="Models\SpecificationAttributeOptions.cs" />
     <Compile Include="OrderService.cs" />
+    <Compile Include="Services\IVehicleService.cs" />
+    <Compile Include="SpecificationAttributeService.cs" />
     <Compile Include="Services\ICategoryService.cs" />
     <Compile Include="Services\IManufacturerService.cs" />
     <Compile Include="Services\IOrderService.cs" />
+    <Compile Include="Services\ISpecificationAttributeService.cs" />
     <Compile Include="Services\IProductService.cs" />
     <Compile Include="Models\BindableCollection.cs" />
     <Compile Include="Models\CompanyInfos.cs" />
@@ -118,6 +124,7 @@
     <Compile Include="Services\ISAPCompanyService.cs" />
     <Compile Include="Services\ISettingService.cs" />
     <Compile Include="SettingsService.cs" />
+    <Compile Include="VehicleService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

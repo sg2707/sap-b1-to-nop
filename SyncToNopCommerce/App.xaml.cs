@@ -17,6 +17,8 @@ using Module1.ViewModels;
 using OrderModule.ViewModels;
 using CategoryModule.ViewModels;
 using ManufacturerModule.ViewModels;
+using SpecificationAttributeModule.ViewModels;
+using VehicleModule.ViewModels;
 
 namespace SAPConnector
 {
@@ -99,6 +101,24 @@ namespace SAPConnector
                     InitializationMode = InitializationMode.OnDemand
                 });
             }
+            {
+                var SpecificationAttributeModuleType = typeof(SpecificationAttributeModule.SpecificationAttributeModule);
+                moduleCatalog.AddModule(new ModuleInfo()
+                {
+                    ModuleName = SpecificationAttributeModuleType.Name,
+                    ModuleType = SpecificationAttributeModuleType.AssemblyQualifiedName,
+                    InitializationMode = InitializationMode.OnDemand
+                });
+            }
+            {
+                var VehicleModuleType = typeof(VehicleModule.VehicleModule);
+                moduleCatalog.AddModule(new ModuleInfo()
+                {
+                    ModuleName = VehicleModuleType.Name,
+                    ModuleType = VehicleModuleType.AssemblyQualifiedName,
+                    InitializationMode = InitializationMode.OnDemand
+                });
+            }
         }
 
         protected async override void OnStartup(StartupEventArgs e)
@@ -144,6 +164,12 @@ namespace SAPConnector
                         case StartupParams.ManufacturerModule:
                             SyncVM = Container.Resolve<ManufacturerSyncViewModel>();
                             break;
+                        case StartupParams.SpecificationAttributeModule:
+                            SyncVM = Container.Resolve<SpecificationAttributeSyncViewModel>();
+                            break;
+                        case StartupParams.VehicleModule:
+                            SyncVM = Container.Resolve<VehicleSyncModel>();
+                            break;
                     }
 
                     if (SyncVM.Enabled)
@@ -169,7 +195,9 @@ namespace SAPConnector
             ProductModule,
             OrderModule,
             CategoryModule,
-            ManufacturerModule
+            ManufacturerModule,
+            SpecificationAttributeModule,
+            VehicleModule
         }
 
         protected override void InitializeModules()
